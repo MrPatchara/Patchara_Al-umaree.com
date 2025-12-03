@@ -22,7 +22,7 @@ https://templatemo.com/tm-600-prism-flux
             {
                 id: 2,
                 title: 'Speaker NAC2025',
-                description: 'Topic: Brain Computer Interface Presentation @NSTDA Conference',
+                description: 'TOPIC: Brain Computer Interface Presentation @NSTDA Conference',
                 image: 'images/port2.jpg',
                 tech: ['AI', 'Health', 'Conference']
             },
@@ -42,24 +42,24 @@ https://templatemo.com/tm-600-prism-flux
             },
             {
                 id: 5,
-                title: 'Data Nexus',
-                description: 'Big data processing platform capable of analyzing petabytes of information in real-time.',
-                image: 'images/data-nexus.jpg',
-                tech: ['Apache Spark', 'Hadoop', 'Kafka']
+                title: 'RU Innovation 2024',
+                description: 'PROJECT: Smart Advertisement System using AI and Image Recognition',
+                image: 'images/port5.jpg',
+                tech: ['AI', 'OpenCV', 'Python']
             },
             {
                 id: 6,
-                title: 'AR Interface',
-                description: 'Augmented reality system for immersive data visualization and interactive experiences.',
-                image: 'images/ar-interface.jpg',
-                tech: ['Unity', 'ARCore', 'Computer Vision']
+                title: 'Smart Parcel Receiving Box',
+                description: 'Automatic notification system for parcel delivery with solar power.',
+                image: 'images/port6.jpg',
+                tech: ['Microcontroller', 'Sensor']
             },
             {
                 id: 7,
-                title: 'IoT Matrix',
-                description: 'Intelligent IoT ecosystem connecting millions of devices with edge computing capabilities.',
-                image: 'images/iot-matrix.jpg',
-                tech: ['MQTT', 'Edge AI', '5G']
+                title: 'High Altitude room',
+                description: 'On the job training high altitude environment simulation @ Singapore',
+                image: 'images/port7.jpg',
+                tech: ['Hypoxia', 'PLC control']
             }
         ];
 
