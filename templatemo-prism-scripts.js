@@ -14,31 +14,31 @@ https://templatemo.com/tm-600-prism-flux
         const portfolioData = [
             {
                 id: 1,
-                title: 'Neural Network',
-                description: 'Advanced AI system with deep learning capabilities for predictive analytics and pattern recognition.',
-                image: 'images/neural-network.jpg',
-                tech: ['TensorFlow', 'Python', 'CUDA']
+                title: 'Sport Science Innovation 2025',
+                description: 'Received the First Runner-up Award',
+                image: 'images/port1.jpg',
+                tech: ['Microcontroller', 'Python']
             },
             {
                 id: 2,
-                title: 'Quantum Cloud',
-                description: 'Next-generation cloud infrastructure leveraging quantum computing for unprecedented processing power.',
-                image: 'images/quantum-cloud.jpg',
-                tech: ['AWS', 'Kubernetes', 'Docker']
+                title: 'Speaker NAC2025',
+                description: 'Topic: Brain Computer Interface Presentation @NSTDA Conference',
+                image: 'images/port2.jpg',
+                tech: ['AI', 'Health', 'Conference']
             },
             {
                 id: 3,
-                title: 'Blockchain Vault',
-                description: 'Secure decentralized storage solution using advanced encryption and distributed ledger technology.',
-                image: 'images/blockchain-vault.jpg',
-                tech: ['Ethereum', 'Solidity', 'Web3']
+                title: 'Motion capture training',
+                description: 'Training Nokov 3D Camera @ Beijing China',
+                image: 'images/port3.jpg',
+                tech: ['Biomechanics', '3D', 'Camera']
             },
             {
                 id: 4,
-                title: 'Cyber Defense',
-                description: 'Military-grade cybersecurity framework with real-time threat detection and automated response.',
-                image: 'images/cyber-defense.jpg',
-                tech: ['Zero Trust', 'AI Defense', 'Encryption']
+                title: 'Robotics Control',
+                description: 'Control system for robotic hand using OpenCV',
+                image: 'images/port4.jpg',
+                tech: ['Hand Tracking', 'OpenCV', 'Python']
             },
             {
                 id: 5,
