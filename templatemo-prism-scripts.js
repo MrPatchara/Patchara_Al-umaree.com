@@ -15,49 +15,49 @@ https://templatemo.com/tm-600-prism-flux
             {
                 id: 1,
                 title: 'Sport Science Innovation 2025',
-                description: 'Received the First Runner-up Award',
+                description: '🏆Received the First Runner-up Award',
                 image: 'images/port1.jpg',
                 tech: ['Microcontroller', 'Python']
             },
             {
                 id: 2,
                 title: 'Speaker NAC2025',
-                description: 'TOPIC: Brain Computer Interface Presentation @NSTDA Conference',
+                description: '📍TOPIC: Brain Computer Interface Presentation @NSTDA Conference',
                 image: 'images/port2.jpg',
                 tech: ['AI', 'Health', 'Conference']
             },
             {
                 id: 3,
                 title: 'Motion capture training',
-                description: 'Training Nokov 3D Camera @ Beijing China',
+                description: '✍Training Nokov 3D Camera @ Beijing China',
                 image: 'images/port3.jpg',
                 tech: ['Biomechanics', '3D', 'Camera']
             },
             {
                 id: 4,
                 title: 'Robotics Control',
-                description: 'Control system for robotic hand using OpenCV',
+                description: '🤖Control system for robotic hand using OpenCV',
                 image: 'images/port4.jpg',
                 tech: ['Hand Tracking', 'OpenCV', 'Python']
             },
             {
                 id: 5,
                 title: 'RU Innovation 2024',
-                description: 'PROJECT: Smart Advertisement System using AI and Image Recognition',
+                description: '⭐PROJECT: Smart Advertisement System using AI and Image Recognition',
                 image: 'images/port5.jpg',
                 tech: ['AI', 'OpenCV', 'Python']
             },
             {
                 id: 6,
                 title: 'Smart Parcel Receiving Box',
-                description: 'Automatic notification system for parcel delivery with solar power.',
+                description: '📦Automatic notification system for parcel delivery with solar power.',
                 image: 'images/port6.jpg',
                 tech: ['Microcontroller', 'Sensor']
             },
             {
                 id: 7,
                 title: 'High Altitude room',
-                description: 'On the job training high altitude environment simulation @ Singapore',
+                description: '🏞️On the job training high altitude environment simulation @ Singapore',
                 image: 'images/port7.jpg',
                 tech: ['Hypoxia', 'PLC control']
             }
