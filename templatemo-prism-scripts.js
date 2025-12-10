@@ -65,19 +65,29 @@ https://templatemo.com/tm-600-prism-flux
 
         // Skills data
         const skillsData = [
+            // Frontend
             { name: 'HTML', icon: 'https://skillicons.dev/icons?i=html', category: 'frontend' },
-            { name: 'Node.js', icon: 'https://skillicons.dev/icons?i=nodejs', category: 'backend' },
-            { name: 'TypeScript', icon: 'https://skillicons.dev/icons?i=typescript', category: 'frontend' },
-            { name: 'AWS', icon: 'https://skillicons.dev/icons?i=aws', category: 'cloud' },
-            { name: 'Docker', icon: 'https://skillicons.dev/icons?i=docker', category: 'cloud' },
-            { name: 'Python', icon: 'https://skillicons.dev/icons?i=python', category: 'backend' },
-            { name: 'Kubernetes', icon: 'https://skillicons.dev/icons?i=kubernetes', category: 'cloud' },
-            { name: 'GraphQL', icon: 'https://skillicons.dev/icons?i=graphql', category: 'backend' },
-            { name: 'TensorFlow', icon: 'https://skillicons.dev/icons?i=tensorflow', category: 'emerging' },
-            { name: 'Blockchain', icon: 'https://skillicons.dev/icons?i=solidity', category: 'emerging' },
-            { name: 'Vue.js', icon: 'https://skillicons.dev/icons?i=vuejs', category: 'frontend' },
-            { name: 'MongoDB', icon: 'https://skillicons.dev/icons?i=mongodb', category: 'backend' }
+            { name: 'CSS', icon: 'https://skillicons.dev/icons?i=css', category: 'frontend' },
+            { name: 'JavaScript', icon: 'https://skillicons.dev/icons?i=javascript', category: 'frontend' },
+            { name: 'Bootstrap', icon: 'https://skillicons.dev/icons?i=bootstrap', category: 'frontend' },
+
+            // AI
+            { name: 'Python', icon: 'https://skillicons.dev/icons?i=python', category: 'ai' },
+            { name: 'OpenCV', icon: 'https://skillicons.dev/icons?i=opencv', category: 'ai' },
+
+            // IoT
+            { name: 'C++', icon: 'https://skillicons.dev/icons?i=cpp', category: 'iot' },
+            { name: 'Arduino', icon: 'https://skillicons.dev/icons?i=arduino', category: 'iot' },
+            { name: 'Raspberry Pi', icon: 'https://skillicons.dev/icons?i=raspberrypi', category: 'iot' },
+            
+            // DevOps & Tools
+            { name: 'Vscode', icon: 'https://skillicons.dev/icons?i=vscode', category: 'devops-tools' },
+            { name: 'Linux', icon: 'https://skillicons.dev/icons?i=linux', category: 'devops-tools' },
+            { name: 'Docker', icon: 'https://skillicons.dev/icons?i=docker', category: 'devops-tools' },
+            { name: 'Git', icon: 'https://skillicons.dev/icons?i=git', category: 'devops-tools' },
+            { name: 'Stack Overflow', icon: 'https://skillicons.dev/icons?i=stackoverflow', category: 'devops-tools' }
         ];
+
 
         // Scroll to section function
         function scrollToSection(sectionId) {
