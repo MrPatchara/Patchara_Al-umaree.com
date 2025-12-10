@@ -65,18 +65,18 @@ https://templatemo.com/tm-600-prism-flux
 
         // Skills data
         const skillsData = [
-            { name: 'React.js', icon: '⚛️', level: 95, category: 'frontend' },
-            { name: 'Node.js', icon: '🟢', level: 90, category: 'backend' },
-            { name: 'TypeScript', icon: '📘', level: 88, category: 'frontend' },
-            { name: 'AWS', icon: '☁️', level: 92, category: 'cloud' },
-            { name: 'Docker', icon: '🐳', level: 85, category: 'cloud' },
-            { name: 'Python', icon: '🐍', level: 93, category: 'backend' },
-            { name: 'Kubernetes', icon: '☸️', level: 82, category: 'cloud' },
-            { name: 'GraphQL', icon: '◈', level: 87, category: 'backend' },
-            { name: 'TensorFlow', icon: '🤖', level: 78, category: 'emerging' },
-            { name: 'Blockchain', icon: '🔗', level: 75, category: 'emerging' },
-            { name: 'Vue.js', icon: '💚', level: 85, category: 'frontend' },
-            { name: 'MongoDB', icon: '🍃', level: 90, category: 'backend' }
+            { name: 'HTML', icon: 'https://skillicons.dev/icons?i=html', category: 'frontend' },
+            { name: 'Node.js', icon: 'https://skillicons.dev/icons?i=nodejs', category: 'backend' },
+            { name: 'TypeScript', icon: 'https://skillicons.dev/icons?i=typescript', category: 'frontend' },
+            { name: 'AWS', icon: 'https://skillicons.dev/icons?i=aws', category: 'cloud' },
+            { name: 'Docker', icon: 'https://skillicons.dev/icons?i=docker', category: 'cloud' },
+            { name: 'Python', icon: 'https://skillicons.dev/icons?i=python', category: 'backend' },
+            { name: 'Kubernetes', icon: 'https://skillicons.dev/icons?i=kubernetes', category: 'cloud' },
+            { name: 'GraphQL', icon: 'https://skillicons.dev/icons?i=graphql', category: 'backend' },
+            { name: 'TensorFlow', icon: 'https://skillicons.dev/icons?i=tensorflow', category: 'emerging' },
+            { name: 'Blockchain', icon: 'https://skillicons.dev/icons?i=solidity', category: 'emerging' },
+            { name: 'Vue.js', icon: 'https://skillicons.dev/icons?i=vuejs', category: 'frontend' },
+            { name: 'MongoDB', icon: 'https://skillicons.dev/icons?i=mongodb', category: 'backend' }
         ];
 
         // Scroll to section function
@@ -287,12 +287,8 @@ https://templatemo.com/tm-600-prism-flux
                     hexagon.innerHTML = `
                         <div class="hexagon-inner">
                             <div class="hexagon-content">
-                                <div class="skill-icon-hex">${skill.icon}</div>
+                                <div class="skill-icon-hex"><img src="${skill.icon}" alt="${skill.name}" style="width:48px; height:48px;"></div>
                                 <div class="skill-name-hex">${skill.name}</div>
-                                <div class="skill-level">
-                                    <div class="skill-level-fill" style="width: ${skill.level}%"></div>
-                                </div>
-                                <div class="skill-percentage-hex">${skill.level}%</div>
                             </div>
                         </div>
                     `;
