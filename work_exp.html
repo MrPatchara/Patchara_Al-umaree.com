@@ -2,10 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Neural Network — Project</title>
+  <title>Work Experience — Patchara Al-umaree</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="templatemo-prism-flux.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    .work-timeline {
+      position: relative;
+      padding: 40px 0;
+    }
+    .work-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--metal-dark);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+    }
+    .work-card:hover {
+      border-color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .work-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .work-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      font-family: 'Orbitron', sans-serif;
+    }
+    .work-period {
+      font-size: 14px;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .work-company {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-bottom: 15px;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .work-description {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
+    .work-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+    .skill-tag {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--metal-dark);
+      color: var(--text-primary);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-family: 'Rajdhani', sans-serif;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 60px 0;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      aspect-ratio: 16/10;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    .gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      padding: 20px;
+      font-size: 14px;
+    }
+    @media (max-width: 768px) {
+      .work-header {
+        flex-direction: column;
+      }
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header id="header" class="header">
@@ -31,19 +138,118 @@
   </header>
 
   <main style="padding:140px 20px 80px; max-width:1100px; margin:0 auto;">
-    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:20px;">← Back</a>
-    <h1 style="font-size:40px; margin-bottom:20px;">Neural Network</h1>
-    <img src="images/neural-network.jpg" alt="Neural Network" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px; border:1px solid var(--metal-dark);">
-    <p style="color:var(--text-secondary); font-size:16px; line-height:1.6; margin-bottom:20px;">
-      Advanced AI system with deep learning capabilities for predictive analytics and pattern recognition.
+    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:30px;">← Back to Home</a>
+    
+    <h1 style="font-size:48px; margin-bottom:15px; font-family: 'Orbitron', sans-serif;">Work Experience</h1>
+    <p style="color:var(--text-secondary); font-size:18px; margin-bottom:50px; max-width:600px;">
+      A summary of my professional journey and key projects that showcase my expertise in AI, software development, and technology innovation.
     </p>
-    <h3 style="color:var(--text-primary); margin-bottom:10px;">Technologies</h3>
-    <ul style="color:var(--text-secondary); margin-bottom:40px;">
-      <li>TensorFlow</li>
-      <li>Python</li>
-      <li>CUDA</li>
-    </ul>
-    <!-- เพิ่มรายละเอียดเพิ่มเติมตามต้องการ -->
+
+    <!-- Work Timeline Section -->
+    <section class="work-timeline">
+      <div class="work-card">
+        <div class="work-header">
+          <div>
+            <div class="work-title">Senior AI Engineer</div>
+            <div class="work-company">Tech Innovation Company</div>
+          </div>
+          <div class="work-period">2023 - Present</div>
+        </div>
+        <div class="work-description">
+          Led development of advanced neural network systems for predictive analytics and pattern recognition. Managed cross-functional teams and optimized deep learning models for production environments.
+        </div>
+        <div class="work-skills">
+          <span class="skill-tag">TensorFlow</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">CUDA</span>
+          <span class="skill-tag">PyTorch</span>
+          <span class="skill-tag">Machine Learning</span>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-header">
+          <div>
+            <div class="work-title">Machine Learning Developer</div>
+            <div class="work-company">Digital Solutions Ltd.</div>
+          </div>
+          <div class="work-period">2021 - 2023</div>
+        </div>
+        <div class="work-description">
+          Developed and deployed machine learning models for client applications. Implemented data pipelines and contributed to open-source projects. Improved model accuracy by 35% through advanced optimization techniques.
+        </div>
+        <div class="work-skills">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Scikit-learn</span>
+          <span class="skill-tag">Data Analysis</span>
+          <span class="skill-tag">PostgreSQL</span>
+          <span class="skill-tag">AWS</span>
+        </div>
+      </div>
+
+      <div class="work-card">
+        <div class="work-header">
+          <div>
+            <div class="work-title">Junior Software Developer</div>
+            <div class="work-company">StartUp Tech Hub</div>
+          </div>
+          <div class="work-period">2020 - 2021</div>
+        </div>
+        <div class="work-description">
+          Contributed to full-stack development projects and built features for mobile and web applications. Gained hands-on experience with modern development practices and agile methodologies.
+        </div>
+        <div class="work-skills">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">Git</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <h2 style="font-size:32px; margin: 60px 0 30px; color: var(--text-primary); font-family: 'Orbitron', sans-serif;">Featured Projects</h2>
+    
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="images/neural-network.jpg" alt="Neural Network Project">
+        <div class="gallery-caption">
+          <strong>Neural Network System</strong><br>Advanced AI with deep learning capabilities
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/project-2.jpg" alt="Project 2">
+        <div class="gallery-caption">
+          <strong>Data Analytics Platform</strong><br>Real-time data visualization and insights
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/project-3.jpg" alt="Project 3">
+        <div class="gallery-caption">
+          <strong>Mobile Application</strong><br>Cross-platform solution with ML integration
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/project-4.jpg" alt="Project 4">
+        <div class="gallery-caption">
+          <strong>Cloud Infrastructure</strong><br>Scalable distributed system architecture
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/project-5.jpg" alt="Project 5">
+        <div class="gallery-caption">
+          <strong>Automation Tool</strong><br>Streamlined workflows with AI-driven automation
+        </div>
+      </div>
+      <div class="gallery-item">
+        <img src="images/project-6.jpg" alt="Project 6">
+        <div class="gallery-caption">
+          <strong>Web Application</strong><br>User-centric design with responsive UI
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <footer class="footer">
