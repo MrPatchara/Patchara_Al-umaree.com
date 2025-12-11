@@ -316,14 +316,15 @@ https://templatemo.com/tm-600-prism-flux
         </div>
         
         <div class="footer-bottom">
-            <div class="copyright">
-                © 2026 All rights reserved.
-            </div>
+            <div class="copyright">© <span id="year"></span> All rights reserved.</div>
             <div class="footer-credits">
                 Created by <a href="https://github.com/MrPatchara" rel="nofollow" target="_blank">Patchara Al-umaree</a>
             </div>
         </div>
     </footer>
+    <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 <script src="templatemo-prism-scripts.js"></script>
 </body>
 </html>
