@@ -404,53 +404,65 @@ https://templatemo.com/tm-600-prism-flux
             contactForm.reset();
         });
 
-        // Loading screen with terminal animation
+        // Loading screen with terminal animation (only on first page load)
         window.addEventListener('load', () => {
-            const line1 = document.getElementById('line1');
-            const line2 = document.getElementById('line2');
-            const line3 = document.getElementById('line3');
+            const loader = document.getElementById('loader');
             
-            const messages = [
-                { element: line1, text: 'Trace: Locating Server @8.8.xx.xx', delay: 200 },
-                { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 300 },
-                { element: line3, text: 'Access: PENDING_', delay: 1000, finalText: 'Access: SUCCESS_' }
-            ];
+            // Check if this is the first page load
+            const isFirstLoad = !sessionStorage.getItem('pageLoaded');
             
-            function typeText(element, text, speed = 50) {
-                return new Promise((resolve) => {
-                    let i = 0;
-                    element.textContent = '';
-                    
-                    const typing = setInterval(() => {
-                        if (i < text.length) {
-                            element.textContent += text.charAt(i);
-                            i++;
-                        } else {
-                            clearInterval(typing);
-                            resolve();
-                        }
-                    }, speed);
-                });
-            }
-            
-            async function animateTerminal() {
-                for (const msg of messages) {
-                    await new Promise(resolve => setTimeout(resolve, msg.delay));
-                    await typeText(msg.element, msg.text, 40);
-                    
-                    if (msg.finalText) {
-                        await new Promise(resolve => setTimeout(resolve, 600));
-                        msg.element.classList.add('success');
-                        msg.element.textContent = msg.finalText;
-                        await new Promise(resolve => setTimeout(resolve, 500));
-                    }
+            if (isFirstLoad) {
+                // Mark that we've loaded the page
+                sessionStorage.setItem('pageLoaded', 'true');
+                
+                const line1 = document.getElementById('line1');
+                const line2 = document.getElementById('line2');
+                const line3 = document.getElementById('line3');
+                
+                const messages = [
+                    { element: line1, text: 'Trace: Locating Server @8.8.xx.xx', delay: 300 },
+                    { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 500 },
+                    { element: line3, text: 'Access: PENDING_', delay: 1200, finalText: 'Access: SUCCESS_' }
+                ];
+                
+                function typeText(element, text, speed = 50) {
+                    return new Promise((resolve) => {
+                        let i = 0;
+                        element.textContent = '';
+                        
+                        const typing = setInterval(() => {
+                            if (i < text.length) {
+                                element.textContent += text.charAt(i);
+                                i++;
+                            } else {
+                                clearInterval(typing);
+                                resolve();
+                            }
+                        }, speed);
+                    });
                 }
                 
-                const loader = document.getElementById('loader');
+                async function animateTerminal() {
+                    for (const msg of messages) {
+                        await new Promise(resolve => setTimeout(resolve, msg.delay));
+                        await typeText(msg.element, msg.text, 40);
+                        
+                        if (msg.finalText) {
+                            await new Promise(resolve => setTimeout(resolve, 600));
+                            msg.element.classList.add('success');
+                            msg.element.textContent = msg.finalText;
+                            await new Promise(resolve => setTimeout(resolve, 500));
+                        }
+                    }
+                    
+                    loader.classList.add('hidden');
+                }
+                
+                animateTerminal();
+            } else {
+                // If not first load (navigating back), hide loader immediately
                 loader.classList.add('hidden');
             }
-            
-            animateTerminal();
         });
 
         // Add parallax effect to hero section
