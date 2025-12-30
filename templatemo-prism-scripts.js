@@ -404,12 +404,53 @@ https://templatemo.com/tm-600-prism-flux
             contactForm.reset();
         });
 
-        // Loading screen
+        // Loading screen with terminal animation
         window.addEventListener('load', () => {
-            setTimeout(() => {
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const line3 = document.getElementById('line3');
+            
+            const messages = [
+                { element: line1, text: 'Trace: Locating Server @203.0.xxx.xxx', delay: 200 },
+                { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 800 },
+                { element: line3, text: 'Access: PENDING_', delay: 1400, finalText: 'Access: CONNECTED_' }
+            ];
+            
+            function typeText(element, text, speed = 50) {
+                return new Promise((resolve) => {
+                    let i = 0;
+                    element.textContent = '';
+                    
+                    const typing = setInterval(() => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typing);
+                            resolve();
+                        }
+                    }, speed);
+                });
+            }
+            
+            async function animateTerminal() {
+                for (const msg of messages) {
+                    await new Promise(resolve => setTimeout(resolve, msg.delay));
+                    await typeText(msg.element, msg.text, 40);
+                    
+                    if (msg.finalText) {
+                        await new Promise(resolve => setTimeout(resolve, 600));
+                        msg.element.classList.add('success');
+                        msg.element.textContent = msg.finalText;
+                        await new Promise(resolve => setTimeout(resolve, 500));
+                    }
+                }
+                
                 const loader = document.getElementById('loader');
                 loader.classList.add('hidden');
-            }, 2800);
+            }
+            
+            animateTerminal();
         });
 
         // Add parallax effect to hero section

@@ -121,7 +121,7 @@ body::after {
 	left: 0;
 	width: 100vw;
 	height: 100vh;
-	background: var(--primary-black);
+	background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -136,7 +136,126 @@ body::after {
 }
 
 .loader-content {
-	text-align: center;
+	width: 100%;
+	max-width: 600px;
+	padding: 0 20px;
+}
+
+/* Terminal Screen */
+.terminal-screen {
+	background: rgba(18, 18, 18, 0.95);
+	border: 2px solid var(--metal-dark);
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 
+		0 20px 60px rgba(0, 0, 0, 0.8),
+		0 0 40px rgba(153, 69, 255, 0.3);
+	animation: terminalGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminalGlow {
+	0% {
+		box-shadow: 
+			0 20px 60px rgba(0, 0, 0, 0.8),
+			0 0 40px rgba(153, 69, 255, 0.3);
+	}
+	100% {
+		box-shadow: 
+			0 20px 60px rgba(0, 0, 0, 0.8),
+			0 0 60px rgba(153, 69, 255, 0.5);
+	}
+}
+
+.terminal-header {
+	background: linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%);
+	padding: 12px 15px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	border-bottom: 1px solid var(--metal-dark);
+}
+
+.terminal-dot {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+.terminal-dot.red {
+	background: #ff5f56;
+	box-shadow: 0 0 10px rgba(255, 95, 86, 0.5);
+}
+
+.terminal-dot.yellow {
+	background: #ffbd2e;
+	box-shadow: 0 0 10px rgba(255, 189, 46, 0.5);
+}
+
+.terminal-dot.green {
+	background: #27c93f;
+	box-shadow: 0 0 10px rgba(39, 201, 63, 0.5);
+}
+
+.terminal-title {
+	color: var(--text-secondary);
+	font-size: 12px;
+	font-family: 'Courier New', monospace;
+	margin-left: auto;
+	letter-spacing: 1px;
+}
+
+.terminal-body {
+	padding: 25px 20px;
+	min-height: 180px;
+	background: #0a0a0a;
+	font-family: 'Courier New', monospace;
+}
+
+.terminal-line {
+	color: var(--accent-green);
+	font-size: 14px;
+	margin-bottom: 12px;
+	line-height: 1.6;
+	letter-spacing: 0.5px;
+	min-height: 22px;
+	display: flex;
+	align-items: center;
+}
+
+.terminal-line::before {
+	content: '>';
+	color: var(--accent-purple);
+	margin-right: 8px;
+	font-weight: bold;
+	animation: blink 1s infinite;
+}
+
+@keyframes blink {
+	0%, 50% { opacity: 1; }
+	51%, 100% { opacity: 0.3; }
+}
+
+.terminal-cursor {
+	display: inline-block;
+	width: 8px;
+	height: 16px;
+	background: var(--accent-green);
+	margin-left: 2px;
+	animation: cursorBlink 0.8s infinite;
+}
+
+@keyframes cursorBlink {
+	0%, 50% { opacity: 1; }
+	51%, 100% { opacity: 0; }
+}
+
+.terminal-line.success {
+	color: var(--accent-cyan);
+}
+
+.terminal-line.warning {
+	color: var(--accent-blue);
 }
 
 .loader-prism {
@@ -144,6 +263,7 @@ body::after {
 	height: 100px;
 	position: relative;
 	margin: 0 auto 30px;
+	display: none;
 }
 
 .prism-face {
