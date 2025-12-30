@@ -5,6 +5,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patchara Al-umaree</title>
     <link rel="stylesheet" href="templatemo-prism-flux.css">
+    <style>
+        .certificates-section {
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .cert-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+            border: 1px solid var(--metal-dark);
+            border-radius: 12px;
+            padding: 40px 24px 32px;
+            box-shadow: 0 8px 32px rgba(16, 185, 129, 0.15);
+        }
+
+        .cert-slideshow-container {
+            position: relative;
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .cert-slide {
+            display: none;
+            text-align: center;
+            animation: cert-slide-in 0.5s ease-in-out;
+        }
+
+        .cert-slide.active {
+            display: block;
+        }
+
+        @keyframes cert-slide-in {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .cert-slide-image {
+            width: 100%;
+            max-height: 420px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .cert-slide-image:hover {
+            transform: scale(1.02);
+        }
+
+        .cert-slide-info {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .cert-slide-title {
+            color: var(--text-primary);
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .cert-slide-issuer {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .cert-slide-date {
+            color: var(--accent-green);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .cert-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .cert-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .cert-nav-btn,
+        .cert-play-pause-btn {
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .cert-nav-btn {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+        }
+
+        .cert-nav-btn:hover {
+            transform: scale(1.08);
+        }
+
+        .cert-nav-btn:active {
+            transform: scale(0.95);
+        }
+
+        .cert-play-pause-btn {
+            background: rgba(16, 185, 129, 0.16);
+            color: var(--accent-green);
+            border: 1px solid var(--accent-green);
+        }
+
+        .cert-play-pause-btn:hover {
+            background: var(--accent-green);
+            color: var(--bg-dark);
+        }
+
+        .cert-counter {
+            color: var(--text-secondary);
+            font-size: 16px;
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .cert-progress-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .cert-progress-fill {
+            height: 100%;
+            background: var(--accent-green);
+            border-radius: 2px;
+            animation: cert-progress 5s linear infinite;
+        }
+
+        .cert-progress-fill.paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes cert-progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        .cert-lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .cert-lightbox-modal.active {
+            display: flex;
+            animation: cert-fade-in 0.3s ease;
+        }
+
+        @keyframes cert-fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .cert-lightbox-content {
+            position: relative;
+            max-width: 80vw;
+            max-height: 80vh;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cert-lightbox-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .cert-lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--accent-green);
+            color: var(--bg-dark);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .cert-lightbox-close:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.35);
+        }
+
+        .cert-lightbox-close:active {
+            transform: scale(0.95);
+        }
+    </style>
 <!-- 
 
 TemplateMo 600 Prism Flux
@@ -45,7 +282,7 @@ https://templatemo.com/tm-600-prism-flux
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#stats" class="nav-link">Metrics</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#certificates" class="nav-link">Certificates</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             
@@ -168,27 +405,41 @@ https://templatemo.com/tm-600-prism-flux
         </div>
     </section>
 
-    <!-- Enhanced Skills Section - Technical Arsenal -->
-    <section class="skills-section" id="skills">
-        <div class="skills-container">
+    <!-- Certificates Section -->
+    <section class="certificates-section" id="certificates">
+        <div class="cert-wrapper">
             <div class="section-header">
-                <h2 class="section-title">Technical Skills</h2>
-                <p class="section-subtitle">Mastery of cutting-edge technologies and frameworks</p>
-            </div>
-            
-            <div class="skill-categories">
-                <div class="category-tab active" data-category="all">All Skills</div>
-                <div class="category-tab" data-category="frontend">Frontend</div>
-                <div class="category-tab" data-category="ai">AI</div>
-                <div class="category-tab" data-category="iot">IoT</div>
-                <div class="category-tab" data-category="devops-tools">DevOps & Tools</div>
+                <h2 class="section-title">Certificates & Achievements</h2>
+                <p class="section-subtitle">Auto-playing certificate slideshow</p>
             </div>
 
-            <div class="skills-hexagon-grid" id="skillsGrid">
-                <!-- Hexagonal skill items will be generated by JavaScript -->
+            <div class="cert-slideshow-container" id="certSlideshowContainer">
+                <!-- Slides rendered via JavaScript -->
+            </div>
+
+            <div class="cert-controls">
+                <div class="cert-buttons">
+                    <button class="cert-nav-btn" id="certPrevBtn" aria-label="Previous certificate">❮</button>
+                    <button class="cert-play-pause-btn" id="certPlayPauseBtn" aria-label="Pause slideshow">⏸</button>
+                    <button class="cert-nav-btn" id="certNextBtn" aria-label="Next certificate">❯</button>
+                </div>
+                <div class="cert-counter">
+                    <span id="certCurrentSlide">1</span> / <span id="certTotalSlides">1</span>
+                </div>
+            </div>
+
+            <div class="cert-progress-bar">
+                <div class="cert-progress-fill" id="certProgressFill"></div>
             </div>
         </div>
     </section>
+
+    <div class="cert-lightbox-modal" id="certLightboxModal">
+        <div class="cert-lightbox-content">
+            <button class="cert-lightbox-close" id="certLightboxClose" aria-label="Close certificate preview">×</button>
+            <img class="cert-lightbox-image" id="certLightboxImage" src="" alt="Certificate preview">
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
@@ -257,6 +508,141 @@ https://templatemo.com/tm-600-prism-flux
             </form>
         </div>
     </section>
+
+    <script>
+        (function() {
+            const certificates = [
+                { title: 'Advanced Computer Programming', issuer: 'Mahidol University', date: '2025', image: 'images/cer/20.png' },
+                { title: 'AI For All:Form Basics to Gen AI Practice', issuer: 'Nvidia Academy', date: '2024', image: 'images/cer/19.png' },
+                { title: 'The Legend of Python', issuer: 'Codedex Academy', date: '2024', image: 'images/cer/18.png' },
+                { title: 'Essential SQL for Everyone', issuer: 'Born to Dev', date: '2024', image: 'images/cer/17.png' },
+                { title: 'Introduction of Networking', issuer: 'Nvidia Academy', date: '2024', image: 'images/cer/16.png' },
+                { title: 'The Origins I: HTML', issuer: 'Codedex Academy', date: '2024', image: 'images/cer/15.png' },
+                { title: 'Fundamental Web Dev with HTML5 & CSS3', issuer: 'Born to Dev', date: '2024', image: 'images/cer/14.png' },
+                { title: 'The Origins II: CSS', issuer: 'Codedex Academy', date: '2024', image: 'images/cer/13.png' },
+                { title: 'Introduction to Javascript', issuer: 'Born to Dev', date: '2024', image: 'images/cer/12.png' },
+                { title: 'Command Prompt 101', issuer: 'Born to Dev', date: '2024', image: 'images/cer/11.png' },
+                { title: 'The Origins III: JavaScript', issuer: 'Codedex Academy', date: '2024', image: 'images/cer/10.png' },
+                { title: 'Volunteering in University Event', issuer: 'Srinakharinwirot University', date: '2019', image: 'images/cer/9.png' },
+                { title: 'GitHub for Developer', issuer: 'Born to Dev', date: '2024', image: 'images/cer/8.png' },
+                { title: 'Participate in Artinis Event', issuer: 'Artinis', date: '2023', image: 'images/cer/7.png' },
+                { title: 'ChatGPT for Developers', issuer: 'Born to Dev', date: '2024', image: 'images/cer/6.png' },
+                { title: 'Dartfish Performance Analyst', issuer: 'Dartfish', date: '2022', image: 'images/cer/5.png' },
+                { title: 'AED and Basic Life Support', issuer: 'The Heart Foundation of Thailand under The Royal Patronage', date: '2020', image: 'images/cer/4.png' },
+                { title: 'Introduction to Quantum Computing', issuer: 'Born to Dev', date: '2024', image: 'images/cer/3.png' },
+                { title: 'AED and Basic Life Support', issuer: 'HRH Princess Maha Chakri Sirindhorn Medical Center', date: '2018', image: 'images/cer/2.png' },
+                { title: 'Sport Injury Prevention', issuer: 'Mahidol University', date: '2020', image: 'images/cer/1.png' }
+            ];
+
+            const container = document.getElementById('certSlideshowContainer');
+            const prevBtn = document.getElementById('certPrevBtn');
+            const nextBtn = document.getElementById('certNextBtn');
+            const playPauseBtn = document.getElementById('certPlayPauseBtn');
+            const progressFill = document.getElementById('certProgressFill');
+            const counterCurrent = document.getElementById('certCurrentSlide');
+            const counterTotal = document.getElementById('certTotalSlides');
+            const lightboxModal = document.getElementById('certLightboxModal');
+            const lightboxImage = document.getElementById('certLightboxImage');
+            const lightboxClose = document.getElementById('certLightboxClose');
+
+            if (!container) return;
+
+            let currentIndex = 0;
+            let isPlaying = true;
+            let slideTimer = null;
+
+            function renderSlides() {
+                container.innerHTML = certificates.map((cert, index) => `
+                    <div class="cert-slide ${index === 0 ? 'active' : ''}">
+                        <img src="${cert.image}" alt="${cert.title}" class="cert-slide-image" data-src="${cert.image}" onerror="this.src='images/placeholder.jpg'">
+                        <div class="cert-slide-info">
+                            <div class="cert-slide-title">${cert.title}</div>
+                            <div class="cert-slide-issuer">${cert.issuer}</div>
+                            <div class="cert-slide-date">${cert.date}</div>
+                        </div>
+                    </div>
+                `).join('');
+                counterTotal.textContent = certificates.length;
+            }
+
+            function resetProgressBar() {
+                progressFill.style.animation = 'none';
+                void progressFill.offsetWidth;
+                progressFill.style.animation = isPlaying ? 'cert-progress 5s linear infinite' : 'none';
+                progressFill.classList.toggle('paused', !isPlaying);
+            }
+
+            function restartTimer() {
+                clearTimeout(slideTimer);
+                if (!isPlaying) return;
+                slideTimer = setTimeout(() => {
+                    nextSlide();
+                }, 5000);
+            }
+
+            function showSlide(index) {
+                const slides = container.querySelectorAll('.cert-slide');
+                if (!slides.length) return;
+
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+                counterCurrent.textContent = index + 1;
+                resetProgressBar();
+                restartTimer();
+            }
+
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % certificates.length;
+                showSlide(currentIndex);
+            }
+
+            function previousSlide() {
+                currentIndex = (currentIndex - 1 + certificates.length) % certificates.length;
+                showSlide(currentIndex);
+            }
+
+            function togglePlayPause() {
+                isPlaying = !isPlaying;
+                playPauseBtn.textContent = isPlaying ? '⏸' : '▶';
+                resetProgressBar();
+                restartTimer();
+            }
+
+            function openLightbox(imageSrc) {
+                lightboxImage.src = imageSrc;
+                lightboxModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightboxModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            container.addEventListener('click', (event) => {
+                const image = event.target.closest('.cert-slide-image');
+                if (!image) return;
+                openLightbox(image.dataset.src || image.src);
+            });
+
+            prevBtn.addEventListener('click', previousSlide);
+            nextBtn.addEventListener('click', nextSlide);
+            playPauseBtn.addEventListener('click', togglePlayPause);
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightboxModal.addEventListener('click', (event) => {
+                if (event.target === lightboxModal) closeLightbox();
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (!lightboxModal.classList.contains('active')) return;
+                if (event.key === 'Escape') closeLightbox();
+            });
+
+            renderSlides();
+            showSlide(currentIndex);
+        })();
+    </script>
 
     <!-- Footer -->
     <footer class="footer">

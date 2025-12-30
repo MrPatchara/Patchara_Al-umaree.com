@@ -63,30 +63,6 @@ https://templatemo.com/tm-600-prism-flux
             }
         ];
 
-        // Skills data
-        const skillsData = [
-            // Frontend
-            { name: 'HTML', icon: 'https://skillicons.dev/icons?i=html', category: 'frontend' },
-            { name: 'CSS', icon: 'https://skillicons.dev/icons?i=css', category: 'frontend' },
-            { name: 'JavaScript', icon: 'https://skillicons.dev/icons?i=javascript', category: 'frontend' },
-            
-            // AI
-            { name: 'Python', icon: 'https://skillicons.dev/icons?i=python', category: 'ai' },
-            { name: 'OpenCV', icon: 'https://skillicons.dev/icons?i=opencv', category: 'ai' },
-
-            // IoT
-            { name: 'C++', icon: 'https://skillicons.dev/icons?i=cpp', category: 'iot' },
-            { name: 'Arduino', icon: 'https://skillicons.dev/icons?i=arduino', category: 'iot' },
-            { name: 'Raspberry Pi', icon: 'https://skillicons.dev/icons?i=raspberrypi', category: 'iot' },
-            
-            // DevOps & Tools
-            { name: 'Vscode', icon: 'https://skillicons.dev/icons?i=vscode', category: 'devops-tools' },
-            { name: 'Linux', icon: 'https://skillicons.dev/icons?i=linux', category: 'devops-tools' },
-            { name: 'Docker', icon: 'https://skillicons.dev/icons?i=docker', category: 'devops-tools' },
-            { name: 'Git', icon: 'https://skillicons.dev/icons?i=git', category: 'devops-tools' },
-        ];
-
-
         // Scroll to section function
         function scrollToSection(sectionId) {
             const section = document.getElementById(sectionId);
@@ -275,47 +251,6 @@ https://templatemo.com/tm-600-prism-flux
             updateCarousel();
         }
 
-        // Initialize hexagonal skills grid
-        function initSkillsGrid() {
-            const skillsGrid = document.getElementById('skillsGrid');
-            const categoryTabs = document.querySelectorAll('.category-tab');
-            
-            function displaySkills(category = 'all') {
-                skillsGrid.innerHTML = '';
-                
-                const filteredSkills = category === 'all' 
-                    ? skillsData 
-                    : skillsData.filter(skill => skill.category === category);
-                
-                filteredSkills.forEach((skill, index) => {
-                    const hexagon = document.createElement('div');
-                    hexagon.className = 'skill-hexagon';
-                    hexagon.style.animationDelay = `${index * 0.1}s`;
-                    
-                    hexagon.innerHTML = `
-                        <div class="hexagon-inner">
-                            <div class="hexagon-content">
-                                <div class="skill-icon-hex"><img src="${skill.icon}" alt="${skill.name}" style="width:48px; height:48px;"></div>
-                                <div class="skill-name-hex">${skill.name}</div>
-                            </div>
-                        </div>
-                    `;
-                    
-                    skillsGrid.appendChild(hexagon);
-                });
-            }
-            
-            categoryTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    categoryTabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    displaySkills(tab.dataset.category);
-                });
-            });
-            
-            displaySkills();
-        }
-
         // Event listeners
         document.getElementById('nextBtn').addEventListener('click', nextSlide);
         document.getElementById('prevBtn').addEventListener('click', prevSlide);
@@ -325,6 +260,11 @@ https://templatemo.com/tm-600-prism-flux
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
+            const certLightbox = document.getElementById('certLightboxModal');
+            const certActive = certLightbox && certLightbox.classList.contains('active');
+            if (certActive) {
+                return;
+            }
             if (e.key === 'ArrowLeft') prevSlide();
             if (e.key === 'ArrowRight') nextSlide();
         });
@@ -340,7 +280,6 @@ https://templatemo.com/tm-600-prism-flux
 
         // Initialize on load
         initCarousel();
-        initSkillsGrid();
         initParticles();
 
         // Mobile menu toggle
