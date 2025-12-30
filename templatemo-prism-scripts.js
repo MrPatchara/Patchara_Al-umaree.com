@@ -396,19 +396,8 @@ https://templatemo.com/tm-600-prism-flux
         // Form submission
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                // Get form data
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData);
-                
-                // Show success message
-                alert(`Thank you ${data.name}! Your message has been transmitted successfully. We'll respond within 24 hours.`);
-                
-                // Reset form
-                contactForm.reset();
-            });
+            // ปิดการทำงานซ้ำของฟอร์มนี้ (logic ฟอร์มจะอยู่ใน index.html เท่านั้น)
+            // contactForm.addEventListener('submit', ... ) ถูกปิดไว้เพื่อป้องกัน reset/alert ซ้ำ
         }
 
         // Loading screen with terminal animation (first load only, show immediately)
