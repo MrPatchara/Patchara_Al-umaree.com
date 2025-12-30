@@ -411,9 +411,9 @@ https://templatemo.com/tm-600-prism-flux
             const line3 = document.getElementById('line3');
             
             const messages = [
-                { element: line1, text: 'Trace: Locating Server @203.0.xxx.xxx', delay: 200 },
-                { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 800 },
-                { element: line3, text: 'Access: PENDING_', delay: 1400, finalText: 'Access: CONNECTED_' }
+                { element: line1, text: 'Trace: Locating Server @8.8.xx.xx', delay: 200 },
+                { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 300 },
+                { element: line3, text: 'Access: PENDING_', delay: 1000, finalText: 'Access: SUCCESS_' }
             ];
             
             function typeText(element, text, speed = 50) {
