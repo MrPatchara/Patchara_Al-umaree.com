@@ -411,67 +411,76 @@ https://templatemo.com/tm-600-prism-flux
             });
         }
 
-        // Loading screen with terminal animation (only on first page load)
-        window.addEventListener('load', () => {
+        // Loading screen with terminal animation (first load only, show immediately)
+        (function() {
             const loader = document.getElementById('loader');
             if (!loader) return; // Skip pages without loader
-            
-            // Check if this is the first page load
+
             const isFirstLoad = !sessionStorage.getItem('pageLoaded');
-            
-            if (isFirstLoad) {
-                // Mark that we've loaded the page
-                sessionStorage.setItem('pageLoaded', 'true');
-                
-                const line1 = document.getElementById('line1');
-                const line2 = document.getElementById('line2');
-                const line3 = document.getElementById('line3');
-                
-                const messages = [
-                    { element: line1, text: 'Trace: Locating Server @8.8.xx.xx', delay: 500 },
-                    { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 800 },
-                    { element: line3, text: 'Access: PENDING_', delay: 1500, finalText: 'Access: SUCCESS_' }
-                ];
-                
-                function typeText(element, text, speed = 50) {
-                    return new Promise((resolve) => {
-                        let i = 0;
-                        element.textContent = '';
-                        
-                        const typing = setInterval(() => {
-                            if (i < text.length) {
-                                element.textContent += text.charAt(i);
-                                i++;
-                            } else {
-                                clearInterval(typing);
-                                resolve();
-                            }
-                        }, speed);
-                    });
-                }
-                
-                async function animateTerminal() {
-                    for (const msg of messages) {
-                        await new Promise(resolve => setTimeout(resolve, msg.delay));
-                        await typeText(msg.element, msg.text, 40);
-                        
-                        if (msg.finalText) {
-                            await new Promise(resolve => setTimeout(resolve, 600));
-                            msg.element.classList.add('success');
-                            msg.element.textContent = msg.finalText;
-                            await new Promise(resolve => setTimeout(resolve, 500));
-                        }
-                    }
-                    
-                    loader.classList.add('hidden');
-                }
-                
-                animateTerminal();
-            } else {
-                // If not first load (navigating back), hide loader immediately
+            if (!isFirstLoad) {
                 loader.classList.add('hidden');
+                return;
             }
-        });
+
+            sessionStorage.setItem('pageLoaded', 'true');
+
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const line3 = document.getElementById('line3');
+
+            if (!line1 || !line2 || !line3) return;
+
+            function typeText(element, text, speed = 50) {
+                return new Promise((resolve) => {
+                    let i = 0;
+                    element.textContent = '';
+
+                    const typing = setInterval(() => {
+                        if (i < text.length) {
+                            element.textContent += text.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typing);
+                            resolve();
+                        }
+                    }, speed);
+                });
+            }
+
+            let pendingDone = false;
+            let pageReady = false;
+
+            const playPending = async () => {
+                await typeText(line1, 'Trace: Locating Server @8.8.xx.xx', 40);
+                await new Promise(r => setTimeout(r, 200));
+                await typeText(line2, 'Status: [SCANNING_PORTS]..', 40);
+                await new Promise(r => setTimeout(r, 200));
+                await typeText(line3, 'Access: PENDING_', 40);
+                pendingDone = true;
+                tryFinish();
+            };
+
+            const finalize = () => {
+                line3.classList.add('success');
+                line3.textContent = 'Access: SUCCESS_';
+                setTimeout(() => loader.classList.add('hidden'), 400);
+            };
+
+            const tryFinish = () => {
+                if (pendingDone && pageReady) {
+                    finalize();
+                }
+            };
+
+            // Start pending animation immediately (DOMContentLoaded timing)
+            playPending();
+
+            // When all assets loaded, flip to SUCCESS and hide
+            window.addEventListener('load', () => {
+                pageReady = true;
+                tryFinish();
+            });
+        })();
 
         // Add parallax effect to hero section
         window.addEventListener('scroll', () => {
