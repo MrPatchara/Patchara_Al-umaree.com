@@ -258,6 +258,14 @@ body::after {
 	color: var(--accent-blue);
 }
 
+.terminal-line.pending-red {
+	color: #ff4444;
+}
+
+.terminal-line.pending-green {
+	color: var(--accent-green);
+}
+
 .loader-prism {
 	width: 100px;
 	height: 100px;

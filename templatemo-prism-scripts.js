@@ -453,10 +453,11 @@ https://templatemo.com/tm-600-prism-flux
 
             const startPendingBlink = () => {
                 if (pendingBlinkTimer) return;
-                let showUnderscore = true;
+                let isRed = true;
                 pendingBlinkTimer = setInterval(() => {
-                    line3.textContent = showUnderscore ? 'Access: PENDING_' : 'Access: PENDING';
-                    showUnderscore = !showUnderscore;
+                    line3.classList.remove('pending-red', 'pending-green');
+                    line3.classList.add(isRed ? 'pending-red' : 'pending-green');
+                    isRed = !isRed;
                 }, 500);
             };
 
@@ -480,6 +481,7 @@ https://templatemo.com/tm-600-prism-flux
 
             const finalize = () => {
                 stopPendingBlink();
+                line3.classList.remove('pending-red', 'pending-green');
                 line3.classList.add('success');
                 line3.textContent = 'Access: SUCCESS_';
                 setTimeout(() => loader.classList.add('hidden'), 400);
