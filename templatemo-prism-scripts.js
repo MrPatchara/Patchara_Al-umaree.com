@@ -449,6 +449,23 @@ https://templatemo.com/tm-600-prism-flux
 
             let pendingDone = false;
             let pageReady = false;
+            let pendingBlinkTimer = null;
+
+            const startPendingBlink = () => {
+                if (pendingBlinkTimer) return;
+                let showUnderscore = true;
+                pendingBlinkTimer = setInterval(() => {
+                    line3.textContent = showUnderscore ? 'Access: PENDING_' : 'Access: PENDING';
+                    showUnderscore = !showUnderscore;
+                }, 500);
+            };
+
+            const stopPendingBlink = () => {
+                if (pendingBlinkTimer) {
+                    clearInterval(pendingBlinkTimer);
+                    pendingBlinkTimer = null;
+                }
+            };
 
             const playPending = async () => {
                 await typeText(line1, 'Trace: Locating Server @8.8.xx.xx', 40);
@@ -456,11 +473,13 @@ https://templatemo.com/tm-600-prism-flux
                 await typeText(line2, 'Status: [SCANNING_PORTS]..', 40);
                 await new Promise(r => setTimeout(r, 200));
                 await typeText(line3, 'Access: PENDING_', 40);
+                startPendingBlink();
                 pendingDone = true;
                 tryFinish();
             };
 
             const finalize = () => {
+                stopPendingBlink();
                 line3.classList.add('success');
                 line3.textContent = 'Access: SUCCESS_';
                 setTimeout(() => loader.classList.add('hidden'), 400);
