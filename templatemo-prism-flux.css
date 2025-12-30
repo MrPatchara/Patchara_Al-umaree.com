@@ -35,6 +35,9 @@ https://templatemo.com/tm-600-prism-flux
 
 html {
 	scroll-behavior: smooth;
+	width: 100%;
+	max-width: 100%;
+	overflow-x: hidden;
 }
 
 body {
@@ -45,6 +48,8 @@ body {
 	position: relative;
 	letter-spacing: 0.01em;
 	line-height: 1.7;
+	width: 100%;
+	max-width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -114,7 +119,7 @@ body::after {
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 	background: var(--primary-black);
 	display: flex;
@@ -122,6 +127,7 @@ body::after {
 	align-items: center;
 	z-index: 10000;
 	transition: opacity 0.5s, visibility 0.5s;
+	overflow: hidden;
 }
 
 .loader.hidden {
