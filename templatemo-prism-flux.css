@@ -375,10 +375,11 @@ body::after {
 .hero {
 	min-height: 100vh;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	padding: 120px 20px 80px;
+	padding: 120px 20px 20px;
 	background: radial-gradient(ellipse at center,
 			rgba(153, 69, 255, 0.1) 0%,
 			transparent 50%);
@@ -387,17 +388,28 @@ body::after {
 .carousel-container {
 	width: 100%;
 	max-width: 1600px;
-	height: 650px;
+	height: auto;
+	min-height: 650px;
 	perspective: 1200px;
 	position: relative;
 	padding-top: 60px;
+	padding-bottom: 0;
+	overflow: visible;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
 }
 
 .carousel {
 	width: 100%;
-	height: 100%;
+	height: 500px;
 	position: relative;
 	transform-style: preserve-3d;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .carousel-item {
@@ -410,6 +422,7 @@ body::after {
 	transition: all 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
 	cursor: pointer;
 	transform-origin: center center;
+	max-width: calc(100% - 40px);
 }
 
 .carousel-item .card {
@@ -542,13 +555,15 @@ body::after {
 
 /* Carousel Controls */
 .carousel-controls {
-	position: absolute;
-	bottom: -70px;
-	left: 50%;
-	transform: translateX(-50%);
+	position: static;
 	display: flex;
 	gap: 20px;
 	z-index: 100;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 40px 20px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 .carousel-btn {
@@ -567,6 +582,9 @@ body::after {
 	box-shadow:
 		0 5px 15px rgba(0, 0, 0, 0.5),
 		inset 0 1px 0 rgba(255, 255, 255, 0.1);
+	pointer-events: auto;
+	z-index: 101;
+	position: relative;
 }
 
 .carousel-btn:hover {
@@ -1437,7 +1455,12 @@ a.info-item {
 	}
 
 	.carousel-controls {
-		bottom: -60px;
+		position: relative;
+		bottom: auto;
+		left: auto;
+		transform: none;
+		padding: 40px 10px 40px;
+		margin-top: auto;
 	}
 
 	.card-image {
@@ -1491,7 +1514,7 @@ a.info-item {
 		top: 78px;
 		flex-direction: column;
 		background: rgba(18, 18, 18, 0.98);
-		width: 100%;
+		width: 100vw;
 		text-align: center;
 		transition: 0.3s;
 		padding: 32px 0 48px;
@@ -1500,7 +1523,7 @@ a.info-item {
 		z-index: 1200;
 		max-height: calc(100vh - 78px);
 		overflow-y: auto;
-		gap: 0;
+		right: auto;
 	}
 
 	.nav-menu li {
@@ -1572,14 +1595,17 @@ a.info-item {
 	}
 
 	.carousel-controls {
-		bottom: -55px;
+		position: static;
 		gap: 14px;
+		padding: 40px 10px;
 	}
 
 	.carousel-btn {
 		width: 48px;
 		height: 48px;
 		font-size: 19px;
+		min-width: 48px;
+		flex-shrink: 0;
 	}
 
 	.carousel-indicators {
@@ -1633,6 +1659,7 @@ a.info-item {
 @media (max-width: 600px) {
 	.nav-container {
 		padding: 14px 14px;
+		overflow: visible;
 	}
 
 	.menu-toggle span {
@@ -1646,17 +1673,21 @@ a.info-item {
 	}
 
 	.hero {
-		min-height: 90vh;
-		padding: 96px 14px 60px;
+		min-height: auto;
+		padding: 96px 14px 20px;
 	}
 
 	.carousel-container {
-		height: 500px;
+		height: auto;
+		min-height: 500px;
+		overflow: visible;
+		margin: 0 auto;
 	}
 
 	.carousel-item {
 		width: 240px;
 		height: 360px;
+		max-width: calc(100% - 30px);
 	}
 
 	.card-title {
@@ -1668,13 +1699,20 @@ a.info-item {
 	}
 
 	.carousel-controls {
-		bottom: -45px;
+		position: relative;
+		bottom: auto;
+		left: auto;
+		transform: none;
+		padding: 30px 10px 0;
+		margin-top: 30px;
 	}
 
 	.carousel-btn {
 		width: 44px;
 		height: 44px;
 		font-size: 18px;
+		min-width: 44px;
+		flex-shrink: 0;
 	}
 
 	.carousel-indicators {

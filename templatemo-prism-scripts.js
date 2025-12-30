@@ -112,10 +112,6 @@ https://templatemo.com/tm-600-prism-flux
             item.className = 'carousel-item';
             item.dataset.index = index;
             
-            const techBadges = data.tech.map(tech => 
-                `<span class="tech-badge">${tech}</span>`
-            ).join('');
-            
             item.innerHTML = `
                 <div class="card">
                     <div class="card-number">0${data.id}</div>
@@ -124,7 +120,6 @@ https://templatemo.com/tm-600-prism-flux
                     </div>
                     <h3 class="card-title">${data.title}</h3>
                     <p class="card-description">${data.description}</p>
-                    <div class="card-tech">${techBadges}</div>
                     <!-- เปลี่ยนปุ่มเป็นลิงก์ไปยังไฟล์ portfolio-{id}.html -->
                     <a class="card-cta" href="portfolio-${data.id}.html" aria-label="Open ${data.title} details">Explore</a>
                 </div>
