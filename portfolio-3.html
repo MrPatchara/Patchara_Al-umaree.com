@@ -2,45 +2,213 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Blockchain Vault — Project</title>
+  <title>Nokov Motion Capture Training</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="templatemo-prism-flux.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', 'Rajdhani', sans-serif;
+      letter-spacing: 0.01em;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Inter', 'Rajdhani', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.25;
+    }
+
+    .page-shell p,
+    .page-shell li {
+      font-size: 16.5px;
+      line-height: 1.8;
+    }
+
+    .page-shell ul {
+      padding-left: 20px;
+    }
+
+    .page-shell {
+      padding: 140px 20px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-purple);
+      background: rgba(153, 69, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-media {
+      width: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin-bottom: 24px;
+      background: #000;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin: 24px 0 32px;
+    }
+
+    .info-card {
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: #000;
+      object-fit: cover;
+      min-height: 200px;
+    }
+
+    blockquote {
+      border-left: 3px solid var(--accent-purple);
+      padding-left: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 18px 0;
+    }
+
+    .callout {
+      margin-top: 24px;
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        padding: 120px 16px 60px;
+      }
+
+      .hero-media {
+        max-height: 320px;
+      }
+
+      .info-card {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header id="header" class="header">
     <div class="nav-container">
-      <a class="logo" href="index.html"><div class="logo-icon"><div class="logo-prism"><div class="prism-shape"></div></div></div><div class="logo-text"><span class="prism">Prism</span><span class="flux">Flux</span></div></a>
+      <a class="logo" href="index.html"><div class="logo-icon"><div class="logo-prism"><div class="prism-shape"></div></div></div><div class="logo-text"><span class="prism">Patchara</span><span class="flux"></span></div></a>
       <nav>
         <div id="menuToggle" class="menu-toggle"><span></span><span></span><span></span></div>
         <ul id="navMenu" class="nav-menu">
           <li><a class="nav-link" href="index.html">Home</a></li>
           <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="index.html#skills">Skills</a></li>
+          <li><a class="nav-link" href="index.html#certificates">Certificates</a></li>
           <li><a class="nav-link" href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main style="padding:140px 20px 80px; max-width:1100px; margin:0 auto;">
-    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:20px;">← Back</a>
-    <h1 style="font-size:40px; margin-bottom:20px;">Blockchain Vault</h1>
-    <img src="images/blockchain-vault.jpg" alt="Blockchain Vault" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px; border:1px solid var(--metal-dark);">
-    <p style="color:var(--text-secondary); font-size:16px; line-height:1.6; margin-bottom:20px;">
-      Secure decentralized storage solution using advanced encryption and distributed ledger technology.
+  <main class="page-shell">
+    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:16px;">← Back</a>
+    <h1 style="font-size:40px; margin-bottom:6px;">Nokov Motion Capture Training</h1>
+    <h3 style="color:var(--text-secondary); font-weight:500; margin-bottom:16px;">Optical Mocap for Sports, VR, and Real-time Animation</h3>
+
+    <div>
+      <span class="tag-badge">Optical Motion Capture</span>
+      <span class="tag-badge">Biomechanics</span>
+      <span class="tag-badge">Unreal/VR Streaming</span>
+    </div>
+
+    <img src="images/379674_0.jpg" alt="Nokov training session" class="hero-media">
+
+    <p style="color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:18px;">
+      Intensive hands-on training at Nokov’s Beijing HQ focused on optical motion capture for sports science, biomechanics, and interactive applications. Covered end-to-end mocap workflows—from marker setup and data cleaning to exporting and streaming for real-time experiences.
     </p>
-    <h3 style="color:var(--text-primary); margin-bottom:10px;">Technologies</h3>
-    <ul style="color:var(--text-secondary); margin-bottom:40px;">
-      <li>Ethereum</li>
-      <li>Solidity</li>
-      <li>Web3</li>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">Key Takeaways</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4 style="margin-bottom:6px; color:var(--text-primary);">Sports Analysis</h4>
+        Applied mocap to assess movement mechanics, reduce injury risk, and optimize training plans.
+      </div>
+      <div class="info-card">
+        <h4 style="margin-bottom:6px; color:var(--text-primary);">Markersets & Fixes</h4>
+        Built Helen Hayes markerset; repaired lost markers with cubic joint interpolation for clean datasets.
+      </div>
+      <div class="info-card">
+        <h4 style="margin-bottom:6px; color:var(--text-primary);">Data Export</h4>
+        Exported C3D/BVH for downstream biomechanics analysis and animation pipelines.
+      </div>
+      <div class="info-card">
+        <h4 style="margin-bottom:6px; color:var(--text-primary);">Real-time Streaming</h4>
+        Streamed mocap into Unreal Engine and VR gaming workflows for live animation and immersive demos.
+      </div>
+    </div>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">Training Coverage</h3>
+    <ul style="color:var(--text-secondary); margin-bottom:18px; line-height:1.7;">
+      <li>Introduction to Nokov optical mocap for sports analysis</li>
+      <li>Creating and managing markersets (Helen Hayes and custom)</li>
+      <li>Repairing lost markers via cubic joint interpolation</li>
+      <li>Exporting mocap data (C3D, BVH) for analysis and animation</li>
+      <li>Implementing mocap for VR gaming scenarios</li>
+      <li>Streaming mocap to Unreal Engine for real-time animation</li>
     </ul>
+
+    <blockquote>
+      “Motion capture is a powerful tool to refine technique, minimize injury risk, and elevate both sports performance and interactive experiences.”
+    </blockquote>
+
+    <div class="image-grid">
+      <img src="images/379678_0.jpg" alt="Hands-on training">
+      <img src="images/379677_0.jpg" alt="System setup">
+    </div>
+
+    <div class="callout">
+      <h4 style="color:var(--text-primary); margin-bottom:8px;">Location</h4>
+      <p style="margin:0;">Nokov Science & Technology Co., Ltd — Beijing Headquarters</p>
+    </div>
   </main>
 
   <footer class="footer">
     <div class="footer-bottom">
-      <div class="copyright">© <span id="year3"></span> Prism Flux</div>
+      <div class="copyright">© <span id="year3"></span> All rights reserved.</div>
       <div class="footer-credits"><a href="index.html">Back to Home</a></div>
     </div>
   </footer>

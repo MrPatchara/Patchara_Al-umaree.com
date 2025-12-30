@@ -2,50 +2,328 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Cyber Defense — Project</title>
+  <title>OpenCV Robotic Hand — Project</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="templatemo-prism-flux.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    .page-shell {
+      padding: 140px 20px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-purple);
+      background: rgba(153, 69, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-media {
+      width: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin-bottom: 24px;
+      background: #000;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin: 28px 0;
+      background: #000;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin: 24px 0 32px;
+    }
+
+    .info-card {
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .info-card h4 {
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: #000;
+      object-fit: cover;
+      min-height: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.32);
+    }
+
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 3000;
+    }
+
+    .gallery-lightbox.active {
+      display: flex;
+    }
+
+    .gallery-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+      background: #000;
+    }
+
+    .gallery-lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: var(--accent-green);
+      color: var(--bg-dark);
+      font-size: 26px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-lightbox-close:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,255,136,0.35);
+    }
+
+    blockquote {
+      border-left: 3px solid var(--accent-purple);
+      padding-left: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 18px 0;
+    }
+
+    .callout {
+      margin-top: 26px;
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        padding: 120px 16px 60px;
+      }
+
+      .hero-media {
+        max-height: 320px;
+      }
+
+      .info-card {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header id="header" class="header">
     <div class="nav-container">
-      <a class="logo" href="index.html"><div class="logo-icon"><div class="logo-prism"><div class="prism-shape"></div></div></div><div class="logo-text"><span class="prism">Prism</span><span class="flux">Flux</span></div></a>
+      <a class="logo" href="index.html"><div class="logo-icon"><div class="logo-prism"><div class="prism-shape"></div></div></div><div class="logo-text"><span class="prism">Patchara</span><span class="flux"></span></div></a>
       <nav>
         <div id="menuToggle" class="menu-toggle"><span></span><span></span><span></span></div>
         <ul id="navMenu" class="nav-menu">
           <li><a class="nav-link" href="index.html">Home</a></li>
           <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="index.html#skills">Skills</a></li>
+          <li><a class="nav-link" href="index.html#certificates">Certificates</a></li>
           <li><a class="nav-link" href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main style="padding:140px 20px 80px; max-width:1100px; margin:0 auto;">
-    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:20px;">← Back</a>
-    <h1 style="font-size:40px; margin-bottom:20px;">Cyber Defense</h1>
-    <img src="images/cyber-defense.jpg" alt="Cyber Defense" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px; border:1px solid var(--metal-dark);">
-    <p style="color:var(--text-secondary); font-size:16px; line-height:1.6; margin-bottom:20px;">
-      Military-grade cybersecurity framework with real-time threat detection and automated response.
+  <main class="page-shell">
+    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:16px;">← Back</a>
+    <h1 style="font-size:40px; margin-bottom:6px;">OpenCV Robotic Hand</h1>
+    <h3 style="color:var(--text-secondary); font-weight:500; margin-bottom:16px;">Hand-tracking control for a 3D-printed InMoov robotic hand</h3>
+
+    <div>
+      <span class="tag-badge">Python + OpenCV</span>
+      <span class="tag-badge">ESP32 + Servo Control</span>
+      <span class="tag-badge">3D Printing</span>
+      <span class="tag-badge">Computer Vision</span>
+    </div>
+
+    <div class="video-frame">
+      <iframe id="youtubePlayer" src="https://www.youtube.com/embed/LW4NS92Rs7Y" allowfullscreen title="OpenCV robotic hand demo"></iframe>
+    </div>
+
+    <p style="color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:18px;">
+      Built a computer-vision pipeline that tracks hand movements via webcam and mirrors them on a 3D-printed robotic hand. The Python app interprets finger positions with OpenCV, translates them into servo commands, and streams control to an ESP32 for responsive motion.
     </p>
-    <h3 style="color:var(--text-primary); margin-bottom:10px;">Technologies</h3>
-    <ul style="color:var(--text-secondary); margin-bottom:40px;">
-      <li>Zero Trust</li>
-      <li>AI Defense</li>
-      <li>Encryption</li>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">Build Highlights</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Hardware</h4>
+        3D-printed InMoov-inspired hand, five high-torque servos, string-driven fingers, and an ESP32 microcontroller.
+      </div>
+      <div class="info-card">
+        <h4>Computer Vision Control</h4>
+        OpenCV hand-tracking maps detected finger states to servo angles, sending live commands over serial to the ESP32.
+      </div>
+      <div class="info-card">
+        <h4>GUI + Tuning</h4>
+        Python GUI for calibration, COM-port selection, and finger sensitivity tuning for smooth mirrored motion.
+      </div>
+      <div class="info-card">
+        <h4>Recognition</h4>
+        Featured at the university exhibition and demonstrated at Kasetsart University Demonstration School to inspire students.
+      </div>
+    </div>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">Project Notes</h3>
+    <ul style="color:var(--text-secondary); margin-bottom:18px; line-height:1.7;">
+      <li>Real-time hand tracking drives individual servos for each finger.</li>
+      <li>Serial link from Python to ESP32 keeps motion responsive and configurable.</li>
+      <li>Designed as an educational build to understand computer vision, hardware control, and 3D printing.</li>
+      <li>Emphasis on smooth mechanical design and robust string routing to prevent drift.</li>
     </ul>
+
+    <blockquote>
+      I am delighted that a project first built for self-learning became a hands-on demo for students and showcased the power of combining computer vision with robotics.
+    </blockquote>
+
+    <h3 style="color:var(--text-primary); margin:20px 0 10px;">Gallery</h3>
+    <div class="image-grid">
+      <img src="images/379859_0.jpg" alt="Robotic hand overview" data-full="images/379859_0.jpg">
+      <img src="images/379860_0.jpg" alt="Hand tracking setup" data-full="images/379860_0.jpg">
+      <img src="images/379867.jpg" alt="University exhibition" data-full="images/379867.jpg">
+      <img src="images/379866.jpg" alt="Student demo" data-full="images/379866.jpg">
+      <img src="images/Picture1.png" alt="Robotic hand close-up" data-full="images/Picture1.png">
+      <img src="images/368969_0.jpg" alt="Hand tracking GUI" data-full="images/368969_0.jpg">
+    </div>
+    <div class="gallery-lightbox" id="galleryLightbox">
+      <button class="gallery-lightbox-close" id="galleryLightboxClose" aria-label="Close image">×</button>
+      <img id="galleryLightboxImage" src="" alt="Gallery preview">
+    </div>
+
+    <div class="callout">
+      <h4 style="color:var(--text-primary); margin-bottom:6px;">Location</h4>
+      <p style="margin:0;">Bangkok, Thailand — educational prototype for computer vision and robotics</p>
+    </div>
   </main>
 
   <footer class="footer">
     <div class="footer-bottom">
-      <div class="copyright">© <span id="year4"></span> Prism Flux</div>
+      <div class="copyright">© <span id="year4"></span> All rights reserved.</div>
       <div class="footer-credits"><a href="index.html">Back to Home</a></div>
     </div>
   </footer>
 
-  <script>document.getElementById('year4').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year4').textContent = new Date().getFullYear();
+
+    (function() {
+      const images = document.querySelectorAll('.image-grid img');
+      const lightbox = document.getElementById('galleryLightbox');
+      const lightboxImg = document.getElementById('galleryLightboxImage');
+      const closeBtn = document.getElementById('galleryLightboxClose');
+
+      if (!images.length || !lightbox || !lightboxImg || !closeBtn) return;
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Gallery preview';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      images.forEach(img => {
+        img.addEventListener('click', () => {
+          openLightbox(img.dataset.full || img.src, img.alt);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
   <script src="templatemo-prism-scripts.js"></script>
 </body>
 </html>

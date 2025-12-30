@@ -2,50 +2,306 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Data Nexus — Project</title>
+  <title>Intelligent Ad Board — RU Innovation 2024</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="templatemo-prism-flux.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    .page-shell {
+      padding: 140px 20px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-purple);
+      background: rgba(153, 69, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-media {
+      width: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin-bottom: 24px;
+      background: #000;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin: 24px 0 32px;
+    }
+
+    .info-card {
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .info-card h4 {
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: #000;
+      object-fit: cover;
+      min-height: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.32);
+    }
+
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 3000;
+    }
+
+    .gallery-lightbox.active {
+      display: flex;
+    }
+
+    .gallery-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+      background: #000;
+    }
+
+    .gallery-lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: var(--accent-green);
+      color: var(--bg-dark);
+      font-size: 26px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-lightbox-close:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,255,136,0.35);
+    }
+
+    blockquote {
+      border-left: 3px solid var(--accent-purple);
+      padding-left: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 18px 0;
+    }
+
+    .callout {
+      margin-top: 26px;
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        padding: 120px 16px 60px;
+      }
+
+      .hero-media {
+        max-height: 320px;
+      }
+
+      .info-card {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header id="header" class="header">
     <div class="nav-container">
-      <a class="logo" href="index.html"><div class="logo-icon"><div class="logo-prism"><div class="prism-shape"></div></div></div><div class="logo-text"><span class="prism">Prism</span><span class="flux">Flux</span></div></a>
+      <a class="logo" href="index.html"><div class="logo-icon"><div class="logo-prism"><div class="prism-shape"></div></div></div><div class="logo-text"><span class="prism">Patchara</span><span class="flux"></span></div></a>
       <nav>
         <div id="menuToggle" class="menu-toggle"><span></span><span></span><span></span></div>
         <ul id="navMenu" class="nav-menu">
           <li><a class="nav-link" href="index.html">Home</a></li>
           <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="index.html#skills">Skills</a></li>
+          <li><a class="nav-link" href="index.html#certificates">Certificates</a></li>
           <li><a class="nav-link" href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main style="padding:140px 20px 80px; max-width:1100px; margin:0 auto;">
-    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:20px;">← Back</a>
-    <h1 style="font-size:40px; margin-bottom:20px;">Data Nexus</h1>
-    <img src="images/data-nexus.jpg" alt="Data Nexus" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px; border:1px solid var(--metal-dark);">
-    <p style="color:var(--text-secondary); font-size:16px; line-height:1.6; margin-bottom:20px;">
-      Big data processing platform capable of analyzing petabytes of information in real-time.
+  <main class="page-shell">
+    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:16px;">← Back</a>
+    <h1 style="font-size:40px; margin-bottom:6px;">Intelligent Ad Board</h1>
+    <h3 style="color:var(--text-secondary); font-weight:500; margin-bottom:16px;">AI-driven advertising with real-time audience detection</h3>
+
+    <div>
+      <span class="tag-badge">🏆 RU Innovation 2024</span>
+      <span class="tag-badge">Python + YOLO AI</span>
+      <span class="tag-badge">Computer Vision</span>
+      <span class="tag-badge">QR Code Integration</span>
+    </div>
+
+    <img src="images/379901_0.jpg" alt="Intelligent Ad Board" class="hero-media">
+
+    <p style="color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:18px;">
+      An AI-powered advertising system that detects viewer demographics in real-time and serves tailored advertisements based on gender and age classification. Integrated QR code scanning allows viewers to access additional product details, promotions, and personalized content with a single scan.
     </p>
-    <h3 style="color:var(--text-primary); margin-bottom:10px;">Technologies</h3>
-    <ul style="color:var(--text-secondary); margin-bottom:40px;">
-      <li>Apache Spark</li>
-      <li>Hadoop</li>
-      <li>Kafka</li>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">System Architecture</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Real-time Detection</h4>
+        Live video feed processed through YOLO AI for gender and age classification with minimal latency.
+      </div>
+      <div class="info-card">
+        <h4>Smart Ad Selection</h4>
+        Automatically selects and displays advertisements matching detected audience demographics.
+      </div>
+      <div class="info-card">
+        <h4>Interactive QR System</h4>
+        Viewers scan QR codes to unlock promotions, detailed product info, and personalized offers.
+      </div>
+      <div class="info-card">
+        <h4>Marketing Efficiency</h4>
+        Increases engagement and conversion by delivering highly relevant content to each viewer.
+      </div>
+    </div>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">How It Works</h3>
+    <ul style="color:var(--text-secondary); margin-bottom:18px; line-height:1.7;">
+      <li>Camera captures real-time video of individuals approaching the display.</li>
+      <li>YOLO AI analyzes facial features to classify gender and age groups.</li>
+      <li>Ad system queries database and selects best-matching advertisements.</li>
+      <li>Relevant ads display while QR codes enable interactive engagement.</li>
+      <li>System logs demographics for analytics and future optimization.</li>
     </ul>
+
+    <blockquote>
+      Participating in RU Innovation 2024 demonstrated the power of combining AI with practical marketing solutions—bridging the gap between computer vision research and real-world advertising impact.
+    </blockquote>
+
+    <h3 style="color:var(--text-primary); margin:20px 0 10px;">Gallery</h3>
+    <div class="image-grid">
+      <img src="images/379901_0.jpg" alt="System overview" data-full="images/379901_0.jpg">
+      <img src="images/379721_0.jpg" alt="Live detection demo" data-full="images/379721_0.jpg">
+      <img src="images/379898_0.jpg" alt="Ad display" data-full="images/379898_0.jpg">
+      <img src="images/379903.jpg" alt="Competition showcase" data-full="images/379903.jpg">
+      <img src="images/379719.jpg" alt="Project presentation" data-full="images/379719.jpg">
+      <img src="images/379899_0.jpg" alt="System in action" data-full="images/379899_0.jpg">
+    </div>
+    <div class="gallery-lightbox" id="galleryLightbox">
+      <button class="gallery-lightbox-close" id="galleryLightboxClose" aria-label="Close image">×</button>
+      <img id="galleryLightboxImage" src="" alt="Gallery preview">
+    </div>
+
+    <div class="callout">
+      <h4 style="color:var(--text-primary); margin-bottom:6px;">Competition</h4>
+      <p style="margin:0;">RU Innovation 2024 — Ramkhamhaeng University, Bangkok — Showcasing AI-driven innovation in digital advertising and audience engagement.</p>
+    </div>
   </main>
 
   <footer class="footer">
     <div class="footer-bottom">
-      <div class="copyright">© <span id="year5"></span> Prism Flux</div>
+      <div class="copyright">© <span id="year5"></span> All rights reserved.</div>
       <div class="footer-credits"><a href="index.html">Back to Home</a></div>
     </div>
   </footer>
 
-  <script>document.getElementById('year5').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year5').textContent = new Date().getFullYear();
+
+    (function() {
+      const images = document.querySelectorAll('.image-grid img');
+      const lightbox = document.getElementById('galleryLightbox');
+      const lightboxImg = document.getElementById('galleryLightboxImage');
+      const closeBtn = document.getElementById('galleryLightboxClose');
+
+      if (!images.length || !lightbox || !lightboxImg || !closeBtn) return;
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Gallery preview';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      images.forEach(img => {
+        img.addEventListener('click', () => {
+          openLightbox(img.dataset.full || img.src, img.alt);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
+  </script>
   <script src="templatemo-prism-scripts.js"></script>
 </body>
 </html>

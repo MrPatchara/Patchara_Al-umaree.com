@@ -2,10 +2,165 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Neural Network — Project</title>
+  <title>Sport Science Innovation Contest 2025</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="templatemo-prism-flux.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    .page-shell {
+      padding: 140px 20px 80px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--accent-purple);
+      background: rgba(153, 69, 255, 0.12);
+      color: var(--text-primary);
+      font-size: 14px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-media {
+      width: 100%;
+      max-height: 440px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin-bottom: 24px;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      margin: 28px 0;
+      background: #000;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin: 24px 0 32px;
+    }
+
+    .info-card {
+      padding: 18px;
+      border: 1px solid var(--metal-dark);
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(153,69,255,0.08), rgba(0,255,136,0.06));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      background: #000;
+      object-fit: cover;
+      min-height: 200px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.32);
+    }
+
+    .gallery-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 3000;
+    }
+
+    .gallery-lightbox.active {
+      display: flex;
+    }
+
+    .gallery-lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 10px;
+      border: 1px solid var(--metal-dark);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.5);
+      background: #000;
+    }
+
+    .gallery-lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      border: none;
+      border-radius: 50%;
+      background: var(--accent-green);
+      color: var(--bg-dark);
+      font-size: 26px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .gallery-lightbox-close:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,255,136,0.35);
+    }
+    
+
+    @media (max-width: 600px) {
+      .page-shell {
+        padding: 120px 16px 60px;
+      }
+
+      .hero-media {
+        max-height: 320px;
+      }
+
+      .info-card {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header id="header" class="header">
@@ -14,7 +169,7 @@
         <div class="logo-icon">
           <div class="logo-prism"><div class="prism-shape"></div></div>
         </div>
-        <div class="logo-text"><span class="prism">Prism</span><span class="flux">Flux</span></div>
+        <div class="logo-text"><span class="prism">Patchara</span><span class="flux"></span></div>
       </a>
       <nav>
         <div id="menuToggle" class="menu-toggle">
@@ -23,38 +178,126 @@
         <ul id="navMenu" class="nav-menu">
           <li><a class="nav-link" href="index.html">Home</a></li>
           <li><a class="nav-link" href="index.html#about">About</a></li>
-          <li><a class="nav-link" href="index.html#skills">Skills</a></li>
+          <li><a class="nav-link" href="index.html#certificates">Certificates</a></li>
           <li><a class="nav-link" href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main style="padding:140px 20px 80px; max-width:1100px; margin:0 auto;">
-    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:20px;">← Back</a>
-    <h1 style="font-size:40px; margin-bottom:20px;">Neural Network</h1>
-    <img src="images/neural-network.jpg" alt="Neural Network" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px; border:1px solid var(--metal-dark);">
-    <p style="color:var(--text-secondary); font-size:16px; line-height:1.6; margin-bottom:20px;">
-      Advanced AI system with deep learning capabilities for predictive analytics and pattern recognition.
+  <main class="page-shell">
+    <a href="index.html" style="color:var(--text-secondary); text-decoration:none; display:inline-block; margin-bottom:16px;">← Back</a>
+    <h1 style="font-size:40px; margin-bottom:4px;">Sport Science Innovation Contest 2025</h1>
+    <h3 style="color:var(--text-secondary); font-weight:500; margin-bottom:16px;">Sports Science Innovation Contest</h3>
+    <div>
+      <span class="tag-badge">🥈 First Runner-up</span>
+      <span class="tag-badge">Smart Multi-Stage Fitness Test System</span>
+      <span class="tag-badge">IoT + Python</span>
+    </div>
+
+    <img src="images/port1.jpg" alt="Smart Multi-Stage Fitness Test" class="hero-media">
+
+    <p style="color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:18px;">
+      A next-gen fitness assessment that modernizes the traditional Beep Test using IoT and real-time data processing. It tracks shuttle runs, heart rate, and auto-calculates results to cut human error and deliver accurate insights for coaches and sport scientists.
+      Built end-to-end as a solo project—hardware, software, and user interface.
     </p>
-    <h3 style="color:var(--text-primary); margin-bottom:10px;">Technologies</h3>
-    <ul style="color:var(--text-secondary); margin-bottom:40px;">
-      <li>TensorFlow</li>
-      <li>Python</li>
-      <li>CUDA</li>
+
+    <div class="video-frame">
+      <iframe id="youtubePlayer" src="https://www.youtube.com/embed/a3_Rm-xb4SM" allowfullscreen title="Smart Multi-Stage Fitness Test"></iframe>
+    </div>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">Key Capabilities</h3>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4 style="margin-bottom:8px;">Beep Test Tracking</h4>
+        <p style="color:var(--text-secondary); line-height:1.6;">Detects shuttle runs per the Multi-Stage Fitness Test and links to heart rate monitors (Polar, Garmin) for live HR logging.</p>
+      </div>
+      <div class="info-card">
+        <h4 style="margin-bottom:8px;">Agility & Speed (Timing Gate)</h4>
+        <p style="color:var(--text-secondary); line-height:1.6;">Acts like a timing gate to capture speed and agility automatically—accurate and field-ready.</p>
+      </div>
+      <div class="info-card">
+        <h4 style="margin-bottom:8px;">RAST Support</h4>
+        <p style="color:var(--text-secondary); line-height:1.6;">Supports the Running-based Anaerobic Sprint Test, calculating sprint reps and rest intervals automatically.</p>
+      </div>
+      <div class="info-card">
+        <h4 style="margin-bottom:8px;">End-to-end Data</h4>
+        <p style="color:var(--text-secondary); line-height:1.6;">Assesses both aerobic and anaerobic energy systems, syncing hardware and software with real-time GUI output.</p>
+      </div>
+    </div>
+
+    <h3 style="color:var(--text-primary); margin-bottom:10px;">Technologies Used</h3>
+    <ul style="color:var(--text-secondary); margin-bottom:18px; line-height:1.7;">
+      <li><strong style="color:var(--text-primary);">IoT (ESP32 &amp; MQTT):</strong> Embedded C controls sensors and edge processing; Reflex IR sensors respond in milliseconds.</li>
+      <li><strong style="color:var(--text-primary);">Wireless &amp; Data Integration:</strong> Streams data wirelessly to a Python app for real-time analytics and visualization.</li>
+      <li><strong style="color:var(--text-primary);">Software (Python):</strong> Signal processing, HR monitor integration, and a user-friendly GUI.</li>
+      <li><strong style="color:var(--text-primary);">3D Design &amp; Fabrication:</strong> Custom enclosure designed and printed in PETG for durability and easy iteration.</li>
     </ul>
-    <!-- เพิ่มรายละเอียดเพิ่มเติมตามต้องการ -->
+
+    <h3 style="color:var(--text-primary); margin:22px 0 12px;">Gallery</h3>
+    <div class="image-grid">
+      <img src="images/cir11.png" alt="System schematic" data-full="images/cir11.png">
+      <img src="images/45611.png" alt="Software interface" data-full="images/45611.png">
+      <img src="images/389763_0.jpg" alt="Prototype overview" data-full="images/389763_0.jpg">
+      <img src="images/408642_0.jpg" alt="Device build" data-full="images/408642_0.jpg">
+      <img src="images/408643_0.jpg" alt="Field testing" data-full="images/408643_0.jpg">
+      <img src="images/2025-05-18 164259.png" alt="3D printed enclosure" data-full="images/2025-05-18 164259.png">
+    </div>
+    <div class="gallery-lightbox" id="galleryLightbox">
+      <button class="gallery-lightbox-close" id="galleryLightboxClose" aria-label="Close image">×</button>
+      <img id="galleryLightboxImage" src="" alt="Gallery preview">
+    </div>
   </main>
 
   <footer class="footer">
     <div class="footer-bottom">
-      <div class="copyright">© <span id="year"></span> Prism Flux</div>
+      <div class="copyright">© <span id="year"></span> All rights reserved.</div>
       <div class="footer-credits"><a href="index.html">Back to Home</a></div>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Gallery lightbox
+    (function() {
+      const images = document.querySelectorAll('.image-grid img');
+      const lightbox = document.getElementById('galleryLightbox');
+      const lightboxImg = document.getElementById('galleryLightboxImage');
+      const closeBtn = document.getElementById('galleryLightboxClose');
+
+      if (!images.length || !lightbox || !lightboxImg || !closeBtn) return;
+
+      function openLightbox(src, alt) {
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Gallery preview';
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('active');
+        lightboxImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      images.forEach(img => {
+        img.addEventListener('click', () => {
+          openLightbox(img.dataset.full || img.src, img.alt);
+        });
+      });
+
+      closeBtn.addEventListener('click', closeLightbox);
+
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+      });
+    })();
   </script>
   <script src="templatemo-prism-scripts.js"></script>
 </body>

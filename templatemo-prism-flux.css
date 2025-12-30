@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 /*
 
@@ -37,11 +38,20 @@ html {
 }
 
 body {
-	font-family: 'Orbitron', 'Rajdhani', sans-serif;
+	font-family: 'Inter', 'Rajdhani', sans-serif;
 	background: var(--primary-black);
 	color: var(--text-primary);
 	overflow-x: hidden;
 	position: relative;
+	letter-spacing: 0.01em;
+	line-height: 1.7;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Inter', 'Rajdhani', sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.01em;
+	line-height: 1.3;
 }
 
 /* Carbon Fiber Background Pattern */
@@ -1456,6 +1466,21 @@ a.info-item {
 }
 
 @media (max-width: 768px) {
+	.nav-container {
+		padding: 16px 18px;
+	}
+
+	.logo-icon {
+		width: 38px;
+		height: 38px;
+		margin-right: 10px;
+	}
+
+	.logo-text {
+		font-size: 20px;
+		letter-spacing: 1px;
+	}
+
 	.menu-toggle {
 		display: flex;
 	}
@@ -1463,14 +1488,18 @@ a.info-item {
 	.nav-menu {
 		position: fixed;
 		left: -100%;
-		top: 85px;
+		top: 78px;
 		flex-direction: column;
 		background: rgba(18, 18, 18, 0.98);
 		width: 100%;
 		text-align: center;
 		transition: 0.3s;
-		padding: 40px 0;
+		padding: 32px 0 48px;
 		border-bottom: 1px solid var(--metal-dark);
+		gap: 0;
+		z-index: 1200;
+		max-height: calc(100vh - 78px);
+		overflow-y: auto;
 		gap: 0;
 	}
 
@@ -1480,8 +1509,8 @@ a.info-item {
 
 	.nav-menu a {
 		display: block;
-		padding: 15px 30px;
-		font-size: 16px;
+		padding: 14px 26px;
+		font-size: 15px;
 	}
 
 	.nav-menu.active {
@@ -1489,22 +1518,31 @@ a.info-item {
 	}
 
 	.carousel-item {
-		width: 300px;
-		height: 460px;
+		width: 280px;
+		height: 420px;
+	}
+
+	.contact-container {
+		grid-template-columns: 1fr;
+		gap: 40px;
+	}
+
+	.contact-info {
+		padding: 32px;
 	}
 
 	.carousel-item .card {
-		padding: 20px;
+		padding: 18px;
 	}
 
 	.card-image {
-		height: 150px;
-		margin-bottom: 15px;
+		height: 140px;
+		margin-bottom: 12px;
 	}
 
 	.card-title {
-		font-size: 20px;
-		margin-bottom: 12px;
+		font-size: 19px;
+		margin-bottom: 10px;
 	}
 
 	.card-description {
@@ -1534,14 +1572,14 @@ a.info-item {
 	}
 
 	.carousel-controls {
-		bottom: -60px;
-		gap: 15px;
+		bottom: -55px;
+		gap: 14px;
 	}
 
 	.carousel-btn {
-		width: 50px;
-		height: 50px;
-		font-size: 20px;
+		width: 48px;
+		height: 48px;
+		font-size: 19px;
 	}
 
 	.carousel-indicators {
@@ -1589,5 +1627,143 @@ a.info-item {
 		flex-direction: column;
 		gap: 20px;
 		text-align: center;
+	}
+}
+
+@media (max-width: 600px) {
+	.nav-container {
+		padding: 14px 14px;
+	}
+
+	.menu-toggle span {
+		width: 26px;
+		height: 3px;
+	}
+
+	.nav-menu {
+		top: 72px;
+		max-height: calc(100vh - 72px);
+	}
+
+	.hero {
+		min-height: 90vh;
+		padding: 96px 14px 60px;
+	}
+
+	.carousel-container {
+		height: 500px;
+	}
+
+	.carousel-item {
+		width: 240px;
+		height: 360px;
+	}
+
+	.card-title {
+		font-size: 18px;
+	}
+
+	.card-description {
+		font-size: 12px;
+	}
+
+	.carousel-controls {
+		bottom: -45px;
+	}
+
+	.carousel-btn {
+		width: 44px;
+		height: 44px;
+		font-size: 18px;
+	}
+
+	.carousel-indicators {
+		top: 16px;
+		gap: 10px;
+	}
+
+	.certificates-section {
+		padding: 90px 14px;
+	}
+
+	.cert-wrapper {
+		padding: 24px 16px 24px;
+	}
+
+	.cert-slideshow-container {
+		max-width: 100%;
+	}
+
+	.cert-slide-image {
+		max-height: 260px;
+	}
+
+	.cert-slide-title {
+		font-size: 20px;
+	}
+
+	.cert-slide-issuer {
+		font-size: 14px;
+	}
+
+	.cert-slide-date {
+		font-size: 13px;
+	}
+
+	.cert-buttons {
+		gap: 14px;
+	}
+
+	.cert-nav-btn,
+	.cert-play-pause-btn {
+		width: 44px;
+		height: 44px;
+		font-size: 20px;
+	}
+
+	.contact-section {
+		padding: 90px 18px;
+	}
+
+	.contact-form {
+		padding: 26px;
+	}
+
+	.contact-container {
+		gap: 24px;
+	}
+
+	.contact-info {
+		padding: 24px;
+	}
+
+	.info-item {
+		margin-bottom: 18px;
+		padding: 16px;
+		align-items: flex-start;
+	}
+
+	.info-icon {
+		width: 44px;
+		height: 44px;
+		margin-right: 14px;
+		font-size: 18px;
+	}
+
+	.info-text h4 {
+		font-size: 15px;
+	}
+
+	.info-text p {
+		font-size: 13px;
+		word-break: break-word;
+	}
+
+	.footer {
+		padding: 48px 18px 28px;
+	}
+
+	.footer-content {
+		gap: 28px;
 	}
 }
