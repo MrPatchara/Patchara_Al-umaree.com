@@ -80,6 +80,8 @@ https://templatemo.com/tm-600-prism-flux
         // Initialize particles for philosophy section
         function initParticles() {
             const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return; // Skip on pages without particles container
+
             const particleCount = 15;
             
             for (let i = 0; i < particleCount; i++) {
@@ -247,11 +249,20 @@ https://templatemo.com/tm-600-prism-flux
         }
 
         // Event listeners
-        document.getElementById('nextBtn').addEventListener('click', nextSlide);
-        document.getElementById('prevBtn').addEventListener('click', prevSlide);
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', nextSlide);
+        }
+        if (prevBtn) {
+            prevBtn.addEventListener('click', prevSlide);
+        }
 
-        // Auto-rotate carousel
-        setInterval(nextSlide, 5000);
+        // Auto-rotate carousel (only if carousel exists)
+        if (carousel && indicatorsContainer) {
+            setInterval(nextSlide, 5000);
+        }
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
@@ -260,8 +271,8 @@ https://templatemo.com/tm-600-prism-flux
             if (certActive) {
                 return;
             }
-            if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft' && carousel && indicatorsContainer) prevSlide();
+            if (e.key === 'ArrowRight' && carousel && indicatorsContainer) nextSlide();
         });
 
         // Update carousel on window resize
@@ -269,29 +280,45 @@ https://templatemo.com/tm-600-prism-flux
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                updateCarousel();
+                if (updateCarousel) {
+                    updateCarousel();
+                }
             }, 250);
         });
 
         // Initialize on load
-        initCarousel();
-        initParticles();
+        if (carousel && indicatorsContainer && initCarousel) {
+            initCarousel();
+        }
+        
+        if (initParticles) {
+            initParticles();
+        }
 
         // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
         const navMenu = document.getElementById('navMenu');
+        
+        console.log('Menu Toggle found:', menuToggle);
+        console.log('Nav Menu found:', navMenu);
 
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            menuToggle.classList.toggle('active');
-        });
+        if (menuToggle && navMenu) {
+            console.log('Adding click listener to menu toggle');
+            menuToggle.addEventListener('click', () => {
+                console.log('Menu toggle clicked');
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+        } else {
+            console.log('Menu toggle or nav menu not found');
+        }
 
         // Header scroll effect
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
+            if (header && window.scrollY > 100) {
                 header.classList.add('scrolled');
-            } else {
+            } else if (header) {
                 header.classList.remove('scrolled');
             }
         });
@@ -302,22 +329,34 @@ https://templatemo.com/tm-600-prism-flux
 
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    const headerHeight = header.offsetHeight;
-                    const targetPosition = targetSection.offsetTop - headerHeight;
+                const href = this.getAttribute('href');
+                // If link is an in-page anchor and target exists, do smooth scroll; otherwise let default navigation happen.
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = href.substring(1);
+                    const targetSection = document.getElementById(targetId);
                     
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    navMenu.classList.remove('active');
-                    menuToggle.classList.remove('active');
+                    if (targetSection && header) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetSection.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (navMenu && menuToggle) {
+                            navMenu.classList.remove('active');
+                            menuToggle.classList.remove('active');
+                        }
+                    }
+                } else {
+                    // Non-anchor links (e.g., other pages) should navigate normally but close the menu on mobile
+                    if (navMenu && menuToggle) {
+                        navMenu.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                    }
                 }
             });
         });
@@ -390,23 +429,26 @@ https://templatemo.com/tm-600-prism-flux
 
         // Form submission
         const contactForm = document.getElementById('contactForm');
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData);
-            
-            // Show success message
-            alert(`Thank you ${data.name}! Your message has been transmitted successfully. We'll respond within 24 hours.`);
-            
-            // Reset form
-            contactForm.reset();
-        });
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(contactForm);
+                const data = Object.fromEntries(formData);
+                
+                // Show success message
+                alert(`Thank you ${data.name}! Your message has been transmitted successfully. We'll respond within 24 hours.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
 
         // Loading screen with terminal animation (only on first page load)
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
+            if (!loader) return; // Skip pages without loader
             
             // Check if this is the first page load
             const isFirstLoad = !sessionStorage.getItem('pageLoaded');
@@ -420,9 +462,9 @@ https://templatemo.com/tm-600-prism-flux
                 const line3 = document.getElementById('line3');
                 
                 const messages = [
-                    { element: line1, text: 'Trace: Locating Server @8.8.xx.xx', delay: 300 },
-                    { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 500 },
-                    { element: line3, text: 'Access: PENDING_', delay: 1200, finalText: 'Access: SUCCESS_' }
+                    { element: line1, text: 'Trace: Locating Server @8.8.xx.xx', delay: 500 },
+                    { element: line2, text: 'Status: [SCANNING_PORTS]..', delay: 800 },
+                    { element: line3, text: 'Access: PENDING_', delay: 1500, finalText: 'Access: SUCCESS_' }
                 ];
                 
                 function typeText(element, text, speed = 50) {
