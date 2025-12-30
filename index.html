@@ -504,6 +504,11 @@ https://templatemo.com/tm-600-prism-flux
                     <label for="message">Message</label>
                     <textarea id="message" name="message" required></textarea>
                 </div>
+
+                <!-- Honeypot field (hidden from users, bots will fill) -->
+                <div style="display:none;">
+                    <input type="text" id="honey" name="honey" autocomplete="off">
+                </div>
                 
                 <button type="submit" class="submit-btn">Transmit Message</button>
             </form>
@@ -709,5 +714,94 @@ https://templatemo.com/tm-600-prism-flux
     document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 <script src="templatemo-prism-scripts.js"></script>
+</script>
+<script>
+// === CONFIG ===
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbyPcaCRWtPjNgaNupuMCqA6qkbMPPDGhkFFrC-lyUZoi67G8ITATMir3vJ8yOtBqA8PIg/exec'; // ตัวอย่าง URL Web App จริง
+const FORM_TOKEN = 'mySecretFormToken2025';  // ตัวอย่าง token จริง (ต้องตรงกับ .gs)
+
+// === SESSION ID (unique per user/browser) ===
+function getSessionId() {
+    let sid = localStorage.getItem('sessionId');
+    if (!sid) {
+        sid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+        localStorage.setItem('sessionId', sid);
+    }
+    return sid;
+}
+
+// === CONTACT FORM SUBMIT ===
+document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = e.target;
+    const payload = {
+        action: 'contact',
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        subject: form.subject.value.trim(),
+        message: form.message.value.trim(),
+        honey: form.honey.value.trim(),
+        userAgent: navigator.userAgent,
+        referrer: document.referrer,
+        origin: window.location.origin,
+        sessionId: getSessionId(),
+        token: FORM_TOKEN
+    };
+    // Basic validation (ซ้ำกับฝั่ง .gs)
+    if (!payload.name || !payload.email || !payload.message) {
+        alert('Please fill all required fields.');
+        return;
+    }
+    if (!/^\S+@\S+\.\S+$/.test(payload.email)) {
+        alert('Invalid email address.');
+        return;
+    }
+    // ส่งข้อมูล
+    try {
+        const res = await fetch(GAS_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Form-Token': FORM_TOKEN
+            },
+            body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (data.message === 'ok') {
+            alert('Message sent!');
+            form.reset();
+        } else {
+            alert('Failed to send. Please try again later.');
+        }
+    } catch (err) {
+        alert('Network error. Please try again.');
+    }
+});
+
+// === PAGEVIEW LOG ===
+(function logPageView() {
+    try {
+        const payload = {
+            action: 'log',
+            page: window.location.pathname,
+            userAgent: navigator.userAgent,
+            referrer: document.referrer,
+            origin: window.location.origin,
+            sessionId: getSessionId(),
+            token: FORM_TOKEN
+        };
+        fetch(GAS_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Form-Token': FORM_TOKEN
+            },
+            body: JSON.stringify(payload)
+        });
+    } catch (err) {}
+})();
+</script>
 </body>
 </html>
