@@ -393,21 +393,55 @@ https://templatemo.com/tm-600-prism-flux
             }
         });
 
-        // Form submission
+        // Form submission with API integration
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
+            contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                // Get form data
-                const formData = new FormData(contactForm);
-                const data = Object.fromEntries(formData);
+                const submitBtn = contactForm.querySelector('.submit-btn');
+                if (!submitBtn) return;
                 
-                // Show success message
-                alert(`Thank you ${data.name}! Your message has been transmitted successfully. We'll respond within 24 hours.`);
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
                 
-                // Reset form
-                contactForm.reset();
+                try {
+                    // Get form data
+                    const formDataObj = new FormData(contactForm);
+                    const formData = {
+                        name: formDataObj.get('name') || '',
+                        email: formDataObj.get('email') || '',
+                        subject: formDataObj.get('subject') || '',
+                        message: formDataObj.get('message') || ''
+                    };
+                    
+                    console.log('📤 Sending form data:', formData);
+                    
+                    // Send to API
+                    const response = await fetch('/api/send-email', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (response.ok) {
+                        alert(`✅ Thank you ${formData.name}! Your message has been sent successfully. I'll respond within 24 hours.`);
+                        contactForm.reset();
+                    } else {
+                        alert('❌ Failed to send message: ' + (result.error || 'Unknown error'));
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('❌ Error: ' + error.message);
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
             });
         }
 
