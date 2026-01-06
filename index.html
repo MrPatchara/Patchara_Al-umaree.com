@@ -738,6 +738,8 @@ https://templatemo.com/tm-600-prism-flux
                         message: document.getElementById('message')?.value || ''
                     };
                     
+                    console.log('📤 Sending form data:', formData);
+                    
                     // ส่งข้อมูลไปที่ API
                     const response = await fetch('/api/send-email', {
                         method: 'POST',
@@ -747,7 +749,10 @@ https://templatemo.com/tm-600-prism-flux
                         body: JSON.stringify(formData)
                     });
                     
+                    console.log('📥 Response status:', response.status);
+                    
                     const result = await response.json();
+                    console.log('📥 Response data:', result);
                     
                     if (response.ok) {
                         // ส่งสำเร็จ
