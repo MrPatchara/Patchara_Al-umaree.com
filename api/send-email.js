@@ -8,11 +8,26 @@ export default async function handler(req, res) {
 
   try {
     // ดึงข้อมูลจาก form
-    const { name, email, subject, message } = req.body;
+    let { name, email, subject, message } = req.body;
 
-    // ตรวจสอบว่ามีข้อมูลครบหรือไม่
+    // ตรวจสอบว่ามีข้อมูลครบหรือไม่ (trim whitespace)
+    name = name?.trim() || '';
+    email = email?.trim() || '';
+    subject = subject?.trim() || '';
+    message = message?.trim() || '';
+
+    // Debug log
+    console.log('Received data:', { name, email, subject, message });
+
     if (!name || !email || !subject || !message) {
+      console.log('Missing fields - name:', !!name, 'email:', !!email, 'subject:', !!subject, 'message:', !!message);
       return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    // ตรวจสอบ email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
     }
 
     // สร้าง Resend client ด้วย API Key จาก Environment Variable
