@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patchara Al-umaree</title>
-    <link rel="stylesheet" href="templatemo-prism-flux.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style">
+    <link rel="stylesheet" href="templatemo-prism-flux.min.css">
     <style>
         .certificates-section {
             padding: 120px 20px;
@@ -476,7 +477,7 @@ https://templatemo.com/tm-600-prism-flux
                 </a>
                 
                 <a href="https://github.com/MrPatchara" target="_blank" class="info-item">
-                    <div class="info-icon"><img src="images/github.png" alt="GitHub" style="width: 32px; height: 32px; object-fit: contain;"></div>
+                    <div class="info-icon"><img src="images/github.png" alt="GitHub" loading="lazy" style="width: 32px; height: 32px; object-fit: contain;"></div>
                     <div class="info-text">
                         <h4>GitHub</h4>
                         <p>View my projects</p>
@@ -555,7 +556,7 @@ https://templatemo.com/tm-600-prism-flux
             function renderSlides() {
                 container.innerHTML = certificates.map((cert, index) => `
                     <div class="cert-slide ${index === 0 ? 'active' : ''}">
-                        <img src="${cert.image}" alt="${cert.title}" class="cert-slide-image" data-src="${cert.image}" onerror="this.src='images/placeholder.jpg'">
+                        <img src="${cert.image}" alt="${cert.title}" loading="lazy" class="cert-slide-image" data-src="${cert.image}" onerror="this.src='images/placeholder.jpg'">
                         <div class="cert-slide-info">
                             <div class="cert-slide-title">${cert.title}</div>
                             <div class="cert-slide-issuer">${cert.issuer}</div>
@@ -714,6 +715,7 @@ https://templatemo.com/tm-600-prism-flux
         }
     });
     </script>
-<script src="templatemo-prism-scripts.js"></script>
+<script src="templatemo-prism-scripts.min.js" defer></script>
+<script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(e=>console.log('SW failed:',e));</script>
 </body>
 </html>
