@@ -1,0 +1,8 @@
+{
+  "name": "patchara-portfolio",
+  "version": "1.0.0",
+  "description": "Portfolio website with contact form",
+  "dependencies": {
+    "resend": "^3.0.0"
+  }
+}
