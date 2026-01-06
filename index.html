@@ -716,12 +716,25 @@ https://templatemo.com/tm-600-prism-flux
 
         // Contact Form Handler
         const contactForm = document.getElementById('contactForm');
+        console.log('🔍 Contact form found:', contactForm);
+        
         if (contactForm) {
+            // ดูว่า form elements มีอยู่หรือไม่
+            console.log('🔍 Form elements:');
+            console.log('  - name input:', contactForm.querySelector('#name'));
+            console.log('  - email input:', contactForm.querySelector('#email'));
+            console.log('  - subject input:', contactForm.querySelector('#subject'));
+            console.log('  - message textarea:', contactForm.querySelector('#message'));
+            
             contactForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
+                console.log('✅ Form submitted!');
                 
                 const submitBtn = contactForm.querySelector('.submit-btn');
-                if (!submitBtn) return;
+                if (!submitBtn) {
+                    console.error('❌ Submit button not found!');
+                    return;
+                }
                 
                 const originalText = submitBtn.textContent;
                 
@@ -730,16 +743,26 @@ https://templatemo.com/tm-600-prism-flux
                 submitBtn.disabled = true;
                 
                 try {
-                    // ดึงข้อมูลจาก form โดยใช้ FormData
-                    const formDataObj = new FormData(contactForm);
+                    // ดึงข้อมูลจาก form โดยตรง
+                    const nameInput = contactForm.querySelector('#name');
+                    const emailInput = contactForm.querySelector('#email');
+                    const subjectInput = contactForm.querySelector('#subject');
+                    const messageInput = contactForm.querySelector('#message');
+                    
                     const formData = {
-                        name: formDataObj.get('name') || '',
-                        email: formDataObj.get('email') || '',
-                        subject: formDataObj.get('subject') || '',
-                        message: formDataObj.get('message') || ''
+                        name: nameInput ? nameInput.value : '',
+                        email: emailInput ? emailInput.value : '',
+                        subject: subjectInput ? subjectInput.value : '',
+                        message: messageInput ? messageInput.value : ''
                     };
                     
                     console.log('📤 Sending form data:', formData);
+                    console.log('📤 Data lengths:', {
+                        name: formData.name.length,
+                        email: formData.email.length,
+                        subject: formData.subject.length,
+                        message: formData.message.length
+                    });
                     
                     // ส่งข้อมูลไปที่ API
                     const response = await fetch('/api/send-email', {
