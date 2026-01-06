@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     // ส่งเมล์
     const data = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>', // ใช้ domain ของ Resend ก่อน
-      to: 'Patcharaalumaree@gmail.com', // เมล์ของคุณ
+      to: 'patcharaalumaree@gmail.com', // เมล์ของคุณ
       replyTo: email, // เมล์ของคนที่ส่ง form
       subject: `[Portfolio Contact] ${subject}`,
       html: `
