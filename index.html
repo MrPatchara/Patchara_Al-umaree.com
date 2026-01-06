@@ -730,12 +730,13 @@ https://templatemo.com/tm-600-prism-flux
                 submitBtn.disabled = true;
                 
                 try {
-                    // ดึงข้อมูลจาก form
+                    // ดึงข้อมูลจาก form โดยใช้ FormData
+                    const formDataObj = new FormData(contactForm);
                     const formData = {
-                        name: document.getElementById('name')?.value || '',
-                        email: document.getElementById('email')?.value || '',
-                        subject: document.getElementById('subject')?.value || '',
-                        message: document.getElementById('message')?.value || ''
+                        name: formDataObj.get('name') || '',
+                        email: formDataObj.get('email') || '',
+                        subject: formDataObj.get('subject') || '',
+                        message: formDataObj.get('message') || ''
                     };
                     
                     console.log('📤 Sending form data:', formData);
