@@ -242,6 +242,76 @@
         .cert-lightbox-close:active {
             transform: scale(0.95);
         }
+
+        /* Resume CTA */
+        .resume-cta {
+            margin-top: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 18px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-cyan);
+            background: linear-gradient(135deg, rgba(59,130,246,0.18) 0%, rgba(16,185,129,0.18) 100%);
+            color: var(--text-primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+            box-shadow: 0 6px 16px rgba(16,185,129,0.25);
+        }
+
+        .resume-btn:hover {
+            transform: translateY(-1px) scale(1.02);
+            background: linear-gradient(135deg, rgba(59,130,246,0.28) 0%, rgba(16,185,129,0.28) 100%);
+        }
+
+        .resume-icon {
+            width: 22px;
+            height: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-cyan);
+            color: var(--bg-dark);
+            border-radius: 6px;
+            font-weight: 900;
+        }
+
+        .resume-note {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .resume-progress {
+            width: 240px;
+            height: 3px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 2px;
+            overflow: hidden;
+            display: none;
+        }
+
+        .resume-progress.active { display: block; }
+
+        .resume-progress-fill {
+            height: 100%;
+            background: var(--accent-cyan);
+            border-radius: 2px;
+            animation: resume-progress-anim 1.2s ease-in-out forwards;
+        }
+
+        @keyframes resume-progress-anim {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
     </style>
 <!-- 
 
@@ -330,10 +400,20 @@ https://templatemo.com/tm-600-prism-flux
             </h2>
 
             <p class="philosophy-subheading" style="text-align: left; line-height: 1.8;">
-                I hold a Bachelor's degree in Sports Science from Srinakharinwirot University and a Bachelor's degree in Computer Engineering. 
-                With a strong passion for integrating technology with sports performance, I focus on developing intelligent systems, 
-                performance-analysis tools, and innovative engineering solutions.
+                <strong>Software Engineer</strong> with dual degrees in <strong>Computer Engineering</strong> and <strong>Sports Science</strong>, developing practical systems that bridge engineering and sports science.
             </p>
+
+            <!-- Resume Download CTA -->
+            <div class="resume-cta" aria-label="Resume download">
+                <button id="resumeDownloadBtn" class="resume-btn" aria-label="Download Resume (PDF)">
+                    <span class="resume-icon">⬇</span>
+                    <span>Download Resume (PDF)</span>
+                </button>
+                <div id="resumeProgress" class="resume-progress" aria-hidden="true">
+                    <div class="resume-progress-fill"></div>
+                </div>
+                <span class="resume-note">Opens from Google Drive. Safe download.</span>
+            </div>
 
             <div class="philosophy-pillars">
                 <div class="pillar">
@@ -732,6 +812,39 @@ https://templatemo.com/tm-600-prism-flux
             yearElement.textContent = new Date().getFullYear();
         }
     });
+    </script>
+    <script>
+    // Resume download handler
+    (function() {
+        const fileId = '1_8W4BhfLLdfnzldCrPa52BOf_hNoZ04J';
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
+
+        const btn = document.getElementById('resumeDownloadBtn');
+        const progress = document.getElementById('resumeProgress');
+        if (!btn) return;
+
+        function startDownload() {
+            btn.disabled = true;
+            const originalText = btn.textContent;
+            btn.textContent = 'Downloading…';
+            progress.classList.add('active');
+
+            // Trigger download without navigating away using a hidden iframe
+            const iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.src = downloadUrl;
+            document.body.appendChild(iframe);
+
+            // Reset UI shortly after
+            setTimeout(() => {
+                btn.disabled = false;
+                btn.textContent = originalText;
+                progress.classList.remove('active');
+            }, 1400);
+        }
+
+        btn.addEventListener('click', startDownload);
+    })();
     </script>
 <script src="templatemo-prism-scripts.min.js" defer></script>
 <script>if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(e=>console.log('SW failed:',e));</script>
