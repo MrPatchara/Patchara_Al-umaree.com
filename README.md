@@ -59,12 +59,9 @@ This repository contains a static portfolio website with an elegant UI and smoot
 ```
 
 ## Screenshots
-> Add your screenshots to `images/` and reference them below.
+- Desktop overview
 
-Placeholder examples:
-
-![Hero Carousel Placeholder](https://via.placeholder.com/1200x500?text=Hero+Carousel)
-![Certificates Slideshow Placeholder](https://via.placeholder.com/1200x500?text=Certificates+Slideshow)
+![Portfolio Overview](Screenshot.png)
 
 ## Quick Start (Local Preview)
 Option A — Python (built‑in on most systems):
